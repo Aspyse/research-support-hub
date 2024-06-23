@@ -1,0 +1,36 @@
+{
+  "name": "research-support-hub",
+  "version": "1.0.0",
+  "description": "CSSWENG Research Support Hub Web App",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx standard --fix && node app",
+    "standard": "npx standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aspyse/research-support-hub.git"
+  },
+  "keywords": [
+    "firebase",
+    "express",
+    "handlebars"
+  ],
+  "author": "1233 CSSWENG S16 Group 10",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aspyse/research-support-hub/issues"
+  },
+  "homepage": "https://github.com/Aspyse/research-support-hub#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.3",
+    "firebase": "^10.12.2"
+  },
+  "devDependencies": {
+    "standard": "^17.1.0"
+  }
+}
