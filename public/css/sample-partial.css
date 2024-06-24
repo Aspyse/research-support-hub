@@ -1,0 +1,7 @@
+/* This is the CSS file for sample-partial.hbs */
+#sample-partial {
+  border: 1px solid gray;
+  border-radius: 6px;
+
+  font-weight: 700;
+}

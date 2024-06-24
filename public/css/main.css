@@ -1,0 +1,13 @@
+/* This stylesheet should (ideally) be used on every page.
+ * Only include style that is always used, if any.
+ */
+
+html {
+  box-sizing: border-box;
+
+  background-color: rgb(10, 20, 20);
+}
+*, *:before, *:after {
+  min-width: 0;
+  box-sizing: inherit;
+}

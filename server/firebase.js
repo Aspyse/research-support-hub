@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 // https://firebase.google.com/docs/reference/js
+import 'dotenv/config'
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
@@ -10,7 +11,7 @@ import { getFirestore } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: 'cssweng-research-support-hub.firebaseapp.com',
   projectId: 'cssweng-research-support-hub',
   storageBucket: 'cssweng-research-support-hub.appspot.com',

@@ -5,9 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx standard --fix && node app",
-    "standard": "npx standard"
+    "dev": "node app",
+    "standard": "npx standard --fix"
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,7 @@
     "firebase": "^10.12.2"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "standard": "^17.1.0"
   }
 }
