@@ -1,0 +1,19 @@
+/* This is the CSS file for sample-partial.hbs */
+
+#sample-page {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+
+  color: black;
+  
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 25rem;
+  padding: 2rem;
+
+  text-transform: uppercase;
+}

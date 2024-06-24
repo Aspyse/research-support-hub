@@ -1,0 +1,24 @@
+/* This stylesheet should (ideally) be used on every page.
+ * Only include style that is always used, if any.
+ */
+
+/* Global CSS variables */
+:root {
+  --primary: #6e2a73;
+  --confirm: #238636;
+  --danger: #f85149;
+  --heading: 32px;
+  --body: 16px;
+  --small: 14px;
+}
+
+html {
+  box-sizing: border-box;
+
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: black;
+}
+*, *:before, *:after {
+  min-width: 0;
+  box-sizing: inherit;
+}
