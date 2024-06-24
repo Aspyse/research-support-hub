@@ -1,7 +1,30 @@
 /* This is the CSS file for sample-partial.hbs */
-#sample-partial {
-  border: 1px solid gray;
+
+.sample-partial {
+  border: 0 solid var(--primary);
   border-radius: 6px;
 
-  font-weight: 700;
+  background-color: var(--primary);
+  color: white;
+
+  cursor: pointer;
+
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 10rem;
+  height: 2rem;
+  text-transform: none;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Every sample-partial after the first */
+.sample-partial+.sample-partial {
+  margin-top: 0.5rem;
 }

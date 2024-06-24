@@ -32,5 +32,10 @@
   "devDependencies": {
     "dotenv": "^16.4.5",
     "standard": "^17.1.0"
+  },
+  "standard": {
+    "globals": [
+      "$"
+    ]
   }
 }

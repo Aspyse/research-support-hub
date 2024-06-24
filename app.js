@@ -14,7 +14,7 @@ import { router } from './server/routes.js'
 
 const PORT = process.env.PORT || 3030
 const NODE_ENV = process.env.NODE_ENV || 'development'
-const __dirname = import.meta.dirname;
+const __dirname = import.meta.dirname
 
 const app = express()
 
@@ -30,6 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(router)
 
 // Listen on localhost
-app.listen(PORT, function () {
-  console.log('Listening at localhost:' + PORT + '/')
+app.listen(PORT, () => {
+  console.log(`Server started at http://localhost:${PORT}`)
 })
