@@ -15,6 +15,8 @@
 
 ## Setup
 
+Copy the `.env` file into your local project root directory. It will be pinned in our group chat.
+
 Run the following command in Terminal:
 
 ```sh
@@ -27,39 +29,34 @@ Once the node modules are installed, you can now run the `dev` script to launch 
 $ npm run dev
 ```
 
-_Please remember to work in your own dev branch._
+## Guidelines for Developers
 
-## Deployment
+_Please do not skip over this section._
 
-This section outlines the process for deploying to Firebase Hosting.
+### General
 
-**Most developers may ignore this section.**
+- Please remember to work in your own dev branch.
 
-1. Install the Firebase CLI:
+### JS
+ 
+- We use ES6 modules.
+  - `import { express } from 'express'` is correct.
+  - `const express = require('express')` is incorrect.
+ 
+- We follow the [Standard](https://github.com/feross/standard) code style. `npm run standard` will automatically format your code.
+  - Semicolons are omitted.
+  - Tabs are 2 spaces.
+  - Single quotes for strings.
+  - Etc.
 
-```sh
-$ npm install -g firebase-tools
-```
+### CSS
 
-2. Sign in to Google:
+- We primarily use `rem` units.
+  - `1px` = `0.0625rem`
+  - Exception may be made for `px` font sizes.
+  - And also `%` for relative sizing.
 
-```sh
-$ firebase login
-```
-
-3. Initialize Firebase Project:
-
-```sh
-$ firebase init
-```
-
-4. Deploy:
-
-```sh
-$ firebase deploy
-```
-
-The project will be deployed to https://cssweng-research-support-hub.web.app/
+- Use `var()` for consistency.
 
 ## Resources
 - [Firebase Hosting Docs](https://firebase.google.com/docs/hosting/quickstart)
