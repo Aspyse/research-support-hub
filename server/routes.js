@@ -25,4 +25,40 @@ router.get('/', async (req, res) => {
   })
 })
 
+
+
+// Sample Route
+router.get('/login', async (req, res) => {
+  res.render('login', {
+    layout: 'index',
+    title: 'login Page',
+    styles: [ // Include every style used when rendering this page.
+      'main.css',
+      'sample.css',
+      'sample-partial.css'
+    ],
+    scripts: [ // Include every script used by the page.
+      'main.js',
+      'sample-partial.js'
+    ]
+  })
+})
+
+// Sample Route
+router.get('/register', async (req, res) => {
+  res.render('register', {
+    layout: 'index',
+    title: 'register Page',
+    styles: [ // Include every style used when rendering this page.
+      'main.css',
+      'sample.css',
+      'sample-partial.css'
+    ],
+    scripts: [ // Include every script used by the page.
+      'main.js',
+      'sample-partial.js'
+    ]
+  })
+})
+
 export { router }
