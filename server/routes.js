@@ -27,8 +27,6 @@ router.get('/', async (req, res) => {
   })
 })
 
-
-
 // login Route
 router.get('/login', async (req, res) => {
   res.render('login', {
@@ -36,12 +34,14 @@ router.get('/login', async (req, res) => {
     title: 'login Page',
     styles: [ // Include every style used when rendering this page.
       'main.css',
-      'login.css',
+      'login.css'
     ],
     scripts: [ // Include every script used by the page.
       'login.js'
     ],
-    firebaseConfig
+    firebaseConfig,
+    auth,
+    db
   })
 })
 
@@ -52,12 +52,14 @@ router.get('/register', async (req, res) => {
     title: 'register Page',
     styles: [ // Include every style used when rendering this page.
       'main.css',
-      'register.css',
+      'register.css'
     ],
     scripts: [ // Include every script used by the page.
       'register.js'
     ],
-    firebaseConfig
+    firebaseConfig,
+    auth,
+    db
   })
 })
 

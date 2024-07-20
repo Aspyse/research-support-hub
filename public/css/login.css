@@ -1,17 +1,17 @@
 /* public/css/login.css */
 .container {
-  padding: 40px 20px;
+  padding: 2rem 1.2rem;
   background-color: #ffffff;
   color: #333;
 }
 
 .content {
-  max-width: 400px;
+  max-width: 20rem;
   margin: auto;
 }
 
 .content h1 {
-  font-size: 36px;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
@@ -22,14 +22,14 @@
 }
 
 .content label {
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .content input {
   margin-bottom: 20px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .content button {
@@ -44,7 +44,7 @@
 
 .content p {
   margin-top: 20px;
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .content a {
