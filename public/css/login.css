@@ -1,7 +1,7 @@
 /* public/css/login.css */
 .container {
   padding: 40px 20px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   color: #333;
 }
 
@@ -15,7 +15,8 @@
   margin-bottom: 20px;
 }
 
-.content form {
+
+.content div {
   display: flex;
   flex-direction: column;
 }
