@@ -36,9 +36,6 @@ function login () {
   
       // Create User data
       var user_data = {
-        id: id,
-        email : email,
-        full_name : full_name,
         last_login : Date.now()
       }
   

@@ -14,50 +14,48 @@ var firebaseConfig = {
   const database = firebase.database()
   
  
-  function register(){
-    id = document.getElementById('id').value
-    email = document.getElementById('email').value
-    password = document.getElementById('password').value
-    full_name = document.getElementById('full_name').value
+  function register() {
+    const id = document.getElementById('id').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const full_name = document.getElementById('full_name').value;
 
-      // Validate input fields
-    if (validate_email(email) == false || validate_password(password) == false) {
-      alert('Email or Password is incorrect')
-      return
-      // Don't continue running the code
+    // Validate input fields
+    if (!validate_email(email) || !validate_password(password)) {
+        alert('Email or Password is incorrect');
+        return;
     }
 
     // Move on with Auth
     auth.createUserWithEmailAndPassword(email, password)
-    .then(function() {
-      // Declare user variable
-      var user = auth.currentUser
-  
-      // Add this user to Firebase Database
-      var database_ref = database.ref()
-  
-      // Create User data
-      var user_data = {
-        id: id,
-        email : email,
-        full_name : full_name,
-        last_login : Date.now()
-      }
-  
-      // Push to Firebase Database
-      database_ref.child('users/' + user.uid).set(user_data)
-  
-      alert('User Created!!')
+        .then(function() {
+            // Declare user variable
+            const user = auth.currentUser;
 
-      // Redirect to the logim page
-      window.location.href = '/login';
-    })
-    .catch(function(error) {
-      var error_code = error.code
-      var error_message = error.message
-  
-      alert(error_message)
-    })
+            // Add this user to Firebase Database
+            const database_ref = database.ref();
+
+            // Create User data
+            const user_data = {
+                id: id,
+                email: email,
+                full_name: full_name,
+                last_login: Date.now()
+            };
+
+            // Push to Firebase Database
+            return database_ref.child('users/' + user.uid).set(user_data);
+        })
+        .then(function() {
+            alert('User Created!!');
+            // Redirect to the login page after data is written
+            window.location.href = '/login';
+        })
+        .catch(function(error) {
+            const error_code = error.code;
+            const error_message = error.message;
+            alert(error_message);
+        });
   }
 
   
