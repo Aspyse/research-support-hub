@@ -34,6 +34,7 @@
         <section class="research-list">
             {{#each researchRequests}}
             <div class="research-card">
+                <span class="type-part">{{typePart}}</span>
                 <h3>{{title}}</h3>
                 <p>{{desc}}</p>
                 <a href="/research-details/{{@key}}" class="button">Participate</a>
