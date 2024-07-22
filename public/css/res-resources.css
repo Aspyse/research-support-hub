@@ -1,0 +1,153 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #343434;
+    color: #FFFFFF;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #FFFFFF;
+}
+
+main {
+    padding: 2rem;
+}
+
+.research-summary {
+    background-color: #424242;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.research-summary h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.research-summary p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.research-search {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #FFFFFF;
+    color: #000;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.search-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-input {
+    padding: 0.5rem;
+    width: 300px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.search-button {
+    background-color: #4CAF50;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.search-button img {
+    width: 16px;
+    height: 16px;
+}
+
+.research-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.research-card {
+    background-color: #555555;
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 2rem);
+    box-sizing: border-box;
+    max-width: calc(33.333% - 2rem);
+}
+
+.research-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.research-card p {
+    margin-bottom: 1rem;
+}
+
+.research-card .button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+footer {
+    background-color: #2E7D32;
+    padding: 1rem;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    color: #FFFFFF;
+}
