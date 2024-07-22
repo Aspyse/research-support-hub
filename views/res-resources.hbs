@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research Resources</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/res-resources.css">
 </head>
@@ -23,11 +24,11 @@
                     <div class="dropdown-content">
                         <a href="#">Title</a>
                         <a href="#">Description</a>
-                        <a href="#">Date</a>
                     </div>
                 </div>
                 <input type="text" class="search-input" placeholder="Enter keywords you are looking for">
-                <button class="search-button"> Search </button>
+                <button class="search-button"><i class="fa fa-search"></i></button>
+                
             </div>
         </section>
         <section class="research-list">
@@ -35,7 +36,7 @@
             <div class="research-card">
                 <h3>{{title}}</h3>
                 <p>{{desc}}</p>
-                <a href="/res-participation/{{@key}}" class="button">Participate</a>
+                <a href="/research-details/{{@key}}" class="button">Participate</a>
             </div>
             {{/each}}
         </section>
