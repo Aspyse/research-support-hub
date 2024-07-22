@@ -38,6 +38,7 @@ function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
                     researchCard.className = 'research-card';
                     
                     researchCard.innerHTML = `
+                        <span class="type-part">${research.typePart}</span>
                         <h3>${research.title}</h3>
                         <p>${research.desc}</p>
                         <a href="/research-details/${key}" class="button">Participate</a>
@@ -68,6 +69,7 @@ function updateResearchSummary() {
             const card = document.createElement('div');
             card.classList.add('research-card');
             card.innerHTML = `
+                <span class="type-part">${request.typePart}</span>
                 <h3>${request.title}</h3>
                 <p>${request.desc}</p>
                 <a href="/research-details/${key}" class="button">Participate</a>
@@ -98,3 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+

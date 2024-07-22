@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const desc = document.getElementById('desc').value;
         const contact = document.getElementById('contact').value;
         const dgMethod = document.getElementById('dg_method').value;
+        const typePart = document.getElementById('typeOfParticipation').value
         const dgLink = document.getElementById('dg_link').value;
         const startDate = document.getElementById('start_date').value;
         const endDate = document.getElementById('end_date').value;
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             desc,
             contact,
             dgMethod,
+            typePart,
             dgLink,
             startDate,
             endDate,
