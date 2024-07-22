@@ -13,8 +13,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// Function to fetch and display research requests based on a query
-function fetchAndDisplayResearchRequests(query = '') {
+// Function to fetch and display research requests based on a query and filter type
+function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
     const resReqRef = database.ref('research_requests');
     
     resReqRef.once('value', (snapshot) => {
@@ -25,12 +25,15 @@ function fetchAndDisplayResearchRequests(query = '') {
         for (const key in data) {
             if (data.hasOwnProperty(key)) {
                 const research = data[key];
-                
-                // Check if the research matches the query
-                if (
-                    research.title.toLowerCase().includes(query.toLowerCase()) ||
-                    research.desc.toLowerCase().includes(query.toLowerCase())
-                ) {
+
+                let matchesQuery = false;
+                if (filterBy === 'title' && research.title.toLowerCase().includes(query.toLowerCase())) {
+                    matchesQuery = true;
+                } else if (filterBy === 'description' && research.desc.toLowerCase().includes(query.toLowerCase())) {
+                    matchesQuery = true;
+                }
+
+                if (matchesQuery) {
                     const researchCard = document.createElement('div');
                     researchCard.className = 'research-card';
                     
@@ -82,6 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search functionality
     document.querySelector('.search-button').addEventListener('click', () => {
         const query = document.querySelector('.search-input').value;
-        fetchAndDisplayResearchRequests(query);
+        const filterBy = document.querySelector('.dropbtn').getAttribute('data-filter');
+        fetchAndDisplayResearchRequests(query, filterBy);
+    });
+
+    // Dropdown functionality
+    document.querySelectorAll('.dropdown-content a').forEach(item => {
+        item.addEventListener('click', (event) => {
+            const filterBy = event.target.textContent.toLowerCase();
+            document.querySelector('.dropbtn').textContent = `Search By: ${event.target.textContent}`;
+            document.querySelector('.dropbtn').setAttribute('data-filter', filterBy);
+        });
     });
 });
