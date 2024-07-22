@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/res-resources.css">
+</head>
+<body>
+    <main>
+        <section class="research-summary">
+            <h2>{{totalProjects}} Active Projects</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </section>
+        <section class="research-search">
+            <div class="search-container">
+                <div class="search-dropdown">
+                    <button class="dropbtn">Search By:</button>
+                    <div class="dropdown-content">
+                        <a href="#">Title</a>
+                        <a href="#">Description</a>
+                        <a href="#">Date</a>
+                    </div>
+                </div>
+                <input type="text" class="search-input" placeholder="Enter keywords you are looking for">
+                <button class="search-button"> Search </button>
+            </div>
+        </section>
+        <section class="research-list">
+            {{#each researchRequests}}
+            <div class="research-card">
+                <h3>{{title}}</h3>
+                <p>{{desc}}</p>
+                <a href="/res-participation/{{@key}}" class="button">Participate</a>
+            </div>
+            {{/each}}
+        </section>
+    </main>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script type="module" src="/js/res-resources.js"></script>
+</body>
+</html>
