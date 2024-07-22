@@ -11,8 +11,9 @@ import { getFirestore } from 'firebase/firestore'
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
   authDomain: 'cssweng-research-support-hub.firebaseapp.com',
+  databaseURL: 'https://cssweng-research-support-hub-default-rtdb.asia-southeast1.firebasedatabase.app',
   projectId: 'cssweng-research-support-hub',
   storageBucket: 'cssweng-research-support-hub.appspot.com',
   messagingSenderId: '332020336850',
@@ -27,4 +28,4 @@ initializeApp(firebaseConfig)
 const auth = getAuth()
 const db = getFirestore()
 
-export { auth, db }
+export { auth, db, firebaseConfig }
