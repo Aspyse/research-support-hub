@@ -80,4 +80,21 @@ router.get('/res-req', async (req, res) => {
   });
 });
 
+router.get('/res-resources', async (req, res) => {
+  res.render('res-resources', {
+    layout: 'index',
+    title: 'Research Resources',
+    styles: [ // Include every style used when rendering this page.
+      'main.css',
+      'res-resources.css'
+    ],
+    scripts: [ // Include every script used by the page.
+      'res-resources.js'
+    ],
+    firebaseConfig,
+    auth,
+    db
+  });
+});
+
 export { router }
