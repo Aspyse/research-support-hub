@@ -2,7 +2,6 @@
 const firebaseConfig = {
     apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
     authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-    databaseURL: 'https://cssweng-research-support-hub-default-rtdb.asia-southeast1.firebasedatabase.app',
     projectId: 'cssweng-research-support-hub',
     storageBucket: 'cssweng-research-support-hub.appspot.com',
     messagingSenderId: '332020336850',
@@ -10,24 +9,27 @@ const firebaseConfig = {
     measurementId: 'G-PDY7DZ01D3'
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+const db = firebase.firestore();
 
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Document loaded, attaching event listener to form');
 
-    function res_req(event) {
+    async function res_req(event) {
         event.preventDefault();  // Prevent the form from submitting the default way
+
+        console.log('Form submission started');
 
         const title = document.getElementById('title').value;
         const desc = document.getElementById('desc').value;
         const contact = document.getElementById('contact').value;
         const dgMethod = document.getElementById('dg_method').value;
-        const typePart = document.getElementById('typeOfParticipation').value
+        const typePart = document.getElementById('typeOfParticipation').value;
         const dgLink = document.getElementById('dg_link').value;
         const startDate = document.getElementById('start_date').value;
         const endDate = document.getElementById('end_date').value;
 
-        const newResReqId = `resReq_${Date.now()}`;
         const newResReq = {
             title,
             desc,
@@ -40,19 +42,18 @@ document.addEventListener('DOMContentLoaded', function () {
             isApproved: false // Add the isApproved field with default value false
         };
 
-        // Log the data to the console
-        console.log('Data to be sent to Firebase:', newResReq);
+        console.log('Data to be sent to Firestore:', newResReq);
 
-        const resReqRef = database.ref('research_requests/' + newResReqId);
-
-        resReqRef.set(newResReq)
-            .then(() => {
-                alert('Research request submitted successfully!');
-                document.getElementById('resReqForm').reset();
-            })
-            .catch((error) => {
-                alert('Failed to submit research request: ' + error.message);
-            });
+        try {
+            // Save the new research request to Firestore
+            await db.collection('research_requests').add(newResReq);
+            console.log('Research request submitted successfully!');
+            alert('Research request submitted successfully!');
+            document.getElementById('resReqForm').reset();
+        } catch (error) {
+            console.error('Failed to submit research request:', error);
+            alert('Failed to submit research request: ' + error.message);
+        }
     }
 
     const form = document.getElementById('resReqForm');
