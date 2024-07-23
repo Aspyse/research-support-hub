@@ -42,7 +42,6 @@
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    // Attach event listener to login button
     document.getElementById('loginButton').addEventListener('click', function () {
         console.log('Login button clicked');
         login(auth, db);

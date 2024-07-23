@@ -36,7 +36,7 @@ header img {
 }
 nav {
   display: flex;
-  margin-left: auto;
+  margin-left: 40rem;
   margin-right: auto;
   gap: 20px;
 }
@@ -46,7 +46,7 @@ nav a {
   font-weight: 500;
 }
 .login-button {
-  background-color: #ffffff;
+  background-color: #2cc30a;
   color: white;
   border: none;
   padding: 10px 20px;

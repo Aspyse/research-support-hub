@@ -14,16 +14,32 @@ router.get('/', async (req, res) => {
     layout: 'index',
     title: 'Home Page',
     styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'sample.css',
-      'sample-partial.css'
+      'main.css'
     ],
     scripts: [ // Include every script used by the page.
-      'main.js',
-      'sample-partial.js',
-      'login.js',
-      'firebase.js'
-    ]
+      'firebase.js',
+      'home.js'
+    ],
+    firebaseConfig,
+    auth,
+    db
+  })
+})
+
+router.get('/profile', async (req, res) => {
+  res.render('profile', {
+    layout: 'index',
+    title: 'Profile Page',
+    styles: [ // Include every style used when rendering this page.
+      'main.css'
+    ],
+    scripts: [ // Include every script used by the page.
+      'firebase.js',
+      'profile.js'
+    ],
+    firebaseConfig,
+    auth,
+    db
   })
 })
 

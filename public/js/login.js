@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
 import { collection, query, where, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 
 // Function to handle login
@@ -45,6 +45,13 @@ export async function login (auth, db) {
     console.log('User logged in successfully')
     alert('User logged in!!')
     window.location.href = '/'
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is already signed in, redirect to home page
+        window.location.href = '/'
+      }
+    })
   } catch (error) {
     console.error('Login error:', error)
     handleAuthError(error) // Ensure this function is called with the correct error object
