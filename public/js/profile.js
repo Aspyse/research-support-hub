@@ -56,9 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fullNameElement.textContent = 'Full Name: N/A'
         emailElement.textContent = 'Email: N/A'
       }
-      // Sign out the user
+      // change login button to logout
       authButton.textContent = 'Logout'
-      authButton.href = '#' 
+      authButton.href = '#'
+      // Sign out the user
       authButton.addEventListener('click', async (event) => {
         event.preventDefault()
         try {

@@ -44,9 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         userNameSpan.textContent = ''
       }
 
-      // Sign out the user
+      // change login button to logout
       authButton.textContent = 'Logout'
       authButton.href = '#'
+      // Sign out the user
       authButton.addEventListener('click', async (event) => {
         event.preventDefault()
         try {
