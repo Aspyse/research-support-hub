@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
           fullNameElement.textContent = `Full Name: ${userData.fullName || 'N/A'}`
           emailElement.textContent = `Email: ${userData.email || 'N/A'}`
         } else {
-          userNameSpan.textContent = 'Hello, User'
+          userNameSpan.textContent = ''
           IDElement.textContent = 'ID Number: N/A'
           fullNameElement.textContent = 'Full Name: N/A'
           emailElement.textContent = 'Email: N/A'
