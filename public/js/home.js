@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         console.error('Error fetching user data:', error)
-        userNameSpan.textContent = 'Login here:'
+        userNameSpan.textContent = ''
       }
-      
+
       // Sign out the user
       authButton.textContent = 'Logout'
       authButton.href = '#'
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     } else {
       // No user is logged in
-      userNameSpan.textContent = 'Login here:'
+      userNameSpan.textContent = ''
       authButton.textContent = 'Login'
       authButton.href = '/login'
     }

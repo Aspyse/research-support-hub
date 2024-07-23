@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (error) {
         console.error('Error fetching user data:', error)
-        userNameSpan.textContent = 'Login here:'
+        userNameSpan.textContent = ''
         IDElement.textContent = 'ID Number: N/A'
         fullNameElement.textContent = 'Full Name: N/A'
         emailElement.textContent = 'Email: N/A'
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     } else {
       // No user is logged in
-      userNameSpan.textContent = 'Login here:'
+      userNameSpan.textContent = ''
       authButton.textContent = 'Login'
       authButton.href = '/login'
       IDElement.textContent = 'ID Number: N/A'
