@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error fetching user data:', error)
         userNameSpan.textContent = 'Login here:'
       }
-
+      
+      // Sign out the user
       authButton.textContent = 'Logout'
       authButton.href = '#'
       authButton.addEventListener('click', async (event) => {

@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fullNameElement.textContent = 'Full Name: N/A'
         emailElement.textContent = 'Email: N/A'
       }
-
+      // Sign out the user
       authButton.textContent = 'Logout'
       authButton.href = '#' // No need for a URL, it's handled in JS
       authButton.addEventListener('click', async (event) => {
