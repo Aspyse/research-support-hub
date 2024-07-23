@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // Sign out the user
       authButton.textContent = 'Logout'
-      authButton.href = '#' // No need for a URL, it's handled in JS
+      authButton.href = '#' 
       authButton.addEventListener('click', async (event) => {
         event.preventDefault()
         try {
