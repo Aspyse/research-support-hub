@@ -1,79 +1,58 @@
-const firebaseConfig = {
-  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
-  authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-  databaseURL: 'https://cssweng-research-support-hub-default-rtdb.asia-southeast1.firebasedatabase.app',
-  projectId: 'cssweng-research-support-hub',
-  storageBucket: 'cssweng-research-support-hub.appspot.com',
-  messagingSenderId: '332020336850',
-  appId: '1:332020336850:web:ac748046a1e82e05e0050b',
-  measurementId: 'G-PDY7DZ01D3'
-};
+import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
 
-firebase.initializeApp(firebaseConfig)
-const auth = firebase.auth()
-const database = firebase.database()
+export async function register (event, auth, db) {
+  event.preventDefault()
 
-// Ensure the DOM is fully loaded before attaching event listeners
-document.addEventListener('DOMContentLoaded', function () {
-  // Define the register function
-  function register() {
-    const id = document.getElementById('id').value.trim()
-    const email = document.getElementById('email').value.trim()
-    const password = document.getElementById('password').value.trim()
-    const fullName = document.getElementById('fullName').value.trim()
+  console.log('Registration started')
 
-    // Input validation
-    if (!id || !email || !password || !fullName) {
-      alert('All fields are required.');
-      return;
-    }
+  const id = document.getElementById('id').value
+  const email = document.getElementById('email').value
+  const password = document.getElementById('password').value
+  const fullName = document.getElementById('fullName').value
 
-    if (password.length < 6) {
-      alert('Password must be at least 6 characters long.');
-      return;
-    }
-
-    if (id.length < 8){
-      alert('ID must be at least 8 characters long.');
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      alert('Invalid email format.');
-      return;
-    }
-
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(function (userCredential) {
-        const user = userCredential.user;
-        const databaseRef = database.ref();
-
-        const userData = {
-          id,
-          email,
-          fullName,
-          last_login: Date.now()
-        };
-
-        return databaseRef.child('users/' + user.uid).set(userData);
-      })
-      .then(function () {
-        alert('User Created!!');
-        window.location.href = '/login';
-      })
-      .catch(function (error) {
-        const errorMessage = error.message;
-        alert(errorMessage);
-      });
+  // Input validation
+  if (!id || !email || !password || !fullName) {
+    alert('All fields are required.')
+    return
   }
 
-  function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+  if (password.length < 6) {
+    alert('Password must be at least 6 characters long.')
+    return
   }
 
-  document.getElementById('registerButton').addEventListener('click', function () {
-    console.log('Register button clicked');
-    register();
-  });
-});
+  if (id.length < 8) {
+    alert('ID must be at least 8 characters long.')
+    return
+  }
+
+  if (!validateEmail(email)) {
+    alert('Invalid email format.')
+    return
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user
+    const userData = {
+      id,
+      email,
+      fullName,
+      last_login: Date.now()
+    }
+
+    await addDoc(collection(db, 'users'), { ...userData, uid: user.uid })
+    console.log('User created successfully')
+    alert('User Created!!')
+    window.location.href = '/login'
+  } catch (error) {
+    console.error('Failed to create user:', error)
+    alert(error.message)
+  }
+}
+
+function validateEmail (email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return re.test(email)
+}
