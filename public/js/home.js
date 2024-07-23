@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // current user header sign in
           userNameSpan.textContent = `${userData.fullName}`
         } else {
-          userNameSpan.textContent = 'Hello, User'
+          userNameSpan.textContent = ''
         }
       } catch (error) {
         console.error('Error fetching user data:', error)
