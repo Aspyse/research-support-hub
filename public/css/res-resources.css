@@ -1,18 +1,10 @@
-main {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #343434;
-    color: #FFFFFF;
-    padding: 2rem;
+
+.content {
+    max-width: 100%;
 }
 
-/* main {
-    padding: 2rem;
-} */
-
 .research-summary {
-    background-color: #424242;
+    background-color: #333;
     padding: 2rem;
     border-radius: 8px;
     margin-bottom: 2rem;
@@ -35,6 +27,7 @@ main {
 
 .search-container {
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -79,7 +72,7 @@ main {
 
 .search-input {
     padding: 0.5rem;
-    width: 300px;
+    width: 100%;
     border-radius: 4px;
     border: none;
     outline: none;
@@ -105,7 +98,7 @@ main {
 }
 
 .research-card {
-    background-color: #555555;
+    background-color: #45454B;
     padding: 1.5rem;
     border-radius: 8px;
     flex: 1 1 calc(33.333% - 2rem);
@@ -143,8 +136,6 @@ main {
     border-radius: 3px;
 }
 
-/* Add your existing CSS styles here */
-
 .search-container {
     display: flex;
     align-items: center;
@@ -157,14 +148,16 @@ main {
 }
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #43b671;
     color: white;
-    padding: 10px;
+    border: none;
+    padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
     outline: none;
 }
+
 
 .dropbtn:after {
     content: ' ▼';
@@ -195,7 +188,7 @@ main {
 }
 
 .search-dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #43b671;
 }
 
 .search-input {
@@ -208,7 +201,7 @@ main {
 }
 
 .search-button {
-    background-color: #4CAF50;
+    background-color: #43b671;
     color: white;
     padding: 10px;
     border: none;
