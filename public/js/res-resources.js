@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from '../server/firebase.js';
+import { auth, db, collection, getDocs, query, where } from '../server/firebase.js';
 import { onAuthStateChanged, signOut } from '../server/firebase.js';
 
 let currentUser = null;
