@@ -1,23 +1,17 @@
-<!DOCTYPE: html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{title}}</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/main.css">
-</head>
-<body>
 <header>
-  <img src="https://via.placeholder.com/150x40?text=" alt="Logo">
-  <nav>
+  <!-- <img src="https://via.placeholder.com/150x40?text=" alt="Logo"> -->
+  <nav class="nav-container">
     <a href="/">Home</a>
-    <a href="/resources">Resources</a>
-    <a href="/submitResearch">Research Request</a>
+    <a href="/res-resources">Resources</a>
+    <a href="/res-req">Research Request</a>
     <a href="/about">About Us</a>
     <a href="/faq">FAQ</a>
     <a href="/profile">Profile</a>
     <a href="/admin">Admin</a>
   </nav>
-  <a href="/login" class="login-button">Login</a>
+  <div id="auth-controls">
+    <span id="userName"></span>
+    <!-- Login or logout button -->
+    <a href="/login" id="authButton" class="login-button">Login</a>
+  </div>
 </header>

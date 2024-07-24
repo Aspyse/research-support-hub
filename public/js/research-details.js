@@ -1,24 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-import { getFirestore, doc, getDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
+import { db, storage,doc, getDoc, addDoc, collection } from '../server/firebase.js';
+import { ref, uploadBytes, getDownloadURL } from '../server/firebase.js';
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
-    authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-    projectId: 'cssweng-research-support-hub',
-    storageBucket: 'cssweng-research-support-hub.appspot.com',
-    messagingSenderId: '332020336850',
-    appId: '1:332020336850:web:ac748046a1e82e05e0050b',
-    measurementId: 'G-PDY7DZ01D3'
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-const storage = getStorage(app);
 
 // Get research ID and user ID from the URL
 const pathname = window.location.pathname;

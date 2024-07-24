@@ -1,9 +1,22 @@
 // Import the functions you need from the SDKs you need
 // https://firebase.google.com/docs/reference/js
-import 'dotenv/config'
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+//import 'dotenv/config'
+
+//firebase-app
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+
+//firebase-auth
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
+import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+
+//firebase-firestore
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+import { query, where, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+
+//firebase-firestore
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,10 +35,15 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
 // Module Exports
-const auth = getAuth()
-const db = getFirestore()
+const auth = getAuth(app)
+const db = getFirestore(app)
+const storage = getStorage(app)
 
-export { auth, db, firebaseConfig }
+export { auth, db, createUserWithEmailAndPassword, collection, addDoc, 
+        signInWithEmailAndPassword, onAuthStateChanged, 
+        query, where, getDocs, updateDoc, doc, signOut , storage,
+        ref, uploadBytes, getDownloadURL
+      }
