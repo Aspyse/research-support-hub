@@ -13,7 +13,7 @@ import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebase
 //firebase-firestore
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
-import { query, where, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+import { query, where, getDocs, getDoc, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 
 //firebase-firestore
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js";
@@ -44,6 +44,6 @@ const storage = getStorage(app)
 
 export { auth, db, createUserWithEmailAndPassword, collection, addDoc, 
         signInWithEmailAndPassword, onAuthStateChanged, 
-        query, where, getDocs, updateDoc, doc, signOut , storage,
+        query, where, getDocs, getDoc, updateDoc, doc, signOut , storage,
         ref, uploadBytes, getDownloadURL
       }
