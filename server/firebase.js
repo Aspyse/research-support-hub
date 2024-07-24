@@ -6,7 +6,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
 import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
 import { query, where, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -34,5 +34,6 @@ const db = getFirestore(app)
 
 export { auth, db, createUserWithEmailAndPassword, collection, addDoc, 
         signInWithEmailAndPassword, onAuthStateChanged, 
-        query, where, getDocs, updateDoc, doc }
+        query, where, getDocs, updateDoc, doc, signOut 
+      }
 

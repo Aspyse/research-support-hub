@@ -18,12 +18,8 @@ router.get('/', async (req, res) => {
       'main.css'
     ],
     scripts: [ // Include every script used by the page.
-      'firebase.js',
       'home.js'
-    ],
-    firebaseConfig,
-    auth,
-    db
+    ]
   })
 })
 
@@ -35,12 +31,8 @@ router.get('/profile', async (req, res) => {
       'main.css'
     ],
     scripts: [ // Include every script used by the page.
-      'firebase.js',
       'profile.js'
-    ],
-    firebaseConfig,
-    auth,
-    db
+    ]
   })
 })
 
