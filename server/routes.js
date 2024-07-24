@@ -18,7 +18,8 @@ router.get('/', async (req, res) => {
       'main.css'
     ],
     scripts: [ // Include every script used by the page.
-      'home.js'
+      'home.js',
+      'main.js'
     ]
   })
 })
@@ -31,7 +32,8 @@ router.get('/profile', async (req, res) => {
       'main.css'
     ],
     scripts: [ // Include every script used by the page.
-      'profile.js'
+      'profile.js',
+      'main.js'
     ]
   })
 })
@@ -46,7 +48,8 @@ router.get('/login', async (req, res) => {
       'login.css'
     ],
     scripts: [ // Include every script used by the page.
-      'login.js'
+      'login.js',
+      'main.js'
     ]
   })
 })
@@ -61,7 +64,8 @@ router.get('/register', async (req, res) => {
       'register.css'
     ],
     scripts: [ // Include every script used by the page.
-      'register.js'
+      'register.js',
+      'main.js'
     ]
   });
 });
