@@ -1,22 +1,7 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js'
-import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
-import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
+import {onAuthStateChanged, signOut } from '../server/firebase.js'
+import { auth, db, collection, query, where, getDocs } from '../server/firebase.js'
 
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
-  authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-  projectId: 'cssweng-research-support-hub',
-  storageBucket: 'cssweng-research-support-hub.appspot.com',
-  messagingSenderId: '332020336850',
-  appId: '1:332020336850:web:ac748046a1e82e05e0050b',
-  measurementId: 'G-PDY7DZ01D3'
-}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
-const db = getFirestore(app)
 
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
