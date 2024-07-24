@@ -7,8 +7,6 @@ import express from 'express'
 // Firebase
 const router = express.Router()
 
-
-
 // Sample Route
 router.get('/', async (req, res) => {
   res.render('home', {
@@ -67,8 +65,7 @@ router.get('/register', async (req, res) => {
       'register.js',
       'main.js'
     ]
-  });
-});
-
+  })
+})
 
 export { router }

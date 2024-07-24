@@ -1,6 +1,4 @@
-import {collection, signOut, onAuthStateChanged} from '../server/firebase.js';
-import {auth, db, getDocs, query, where,} from '../server/firebase.js';
-
+import { collection, signOut, onAuthStateChanged, auth, db, getDocs, query, where } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   // code for session handling

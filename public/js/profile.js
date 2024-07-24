@@ -1,7 +1,4 @@
-import {onAuthStateChanged, signOut } from '../server/firebase.js'
-import { auth, db, collection, query, where, getDocs } from '../server/firebase.js'
-
-
+import { onAuthStateChanged, signOut, auth, db, collection, query, where, getDocs } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
