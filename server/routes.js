@@ -5,8 +5,10 @@
 import express from 'express'
 
 // Firebase
-import { auth, db, firebaseConfig } from './firebase.js'
+import { auth, db } from './firebase.js'
 const router = express.Router()
+
+
 
 // Sample Route
 router.get('/', async (req, res) => {
@@ -47,17 +49,14 @@ router.get('/profile', async (req, res) => {
 router.get('/login', async (req, res) => {
   res.render('login', {
     layout: 'index',
-    title: 'login Page',
+    title: 'Login Page',
     styles: [ // Include every style used when rendering this page.
       'main.css',
       'login.css'
     ],
     scripts: [ // Include every script used by the page.
       'login.js'
-    ],
-    firebaseConfig,
-    auth,
-    db
+    ]
   })
 })
 
@@ -65,18 +64,16 @@ router.get('/login', async (req, res) => {
 router.get('/register', async (req, res) => {
   res.render('register', {
     layout: 'index',
-    title: 'register Page',
+    title: 'Register Page',
     styles: [ // Include every style used when rendering this page.
       'main.css',
       'register.css'
     ],
     scripts: [ // Include every script used by the page.
       'register.js'
-    ],
-    firebaseConfig,
-    auth,
-    db
-  })
-})
+    ]
+  });
+});
+
 
 export { router }
