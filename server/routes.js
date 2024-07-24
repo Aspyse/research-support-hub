@@ -1,79 +1,64 @@
-/* This file manages our HTTP routes.
- * Firebase functions are also used here.
- */
-
-import express from 'express'
-
-// Firebase
-import { auth, db, firebaseConfig } from './firebase.js'
-const router = express.Router()
+import express from 'express';
+import { auth, db, firebaseConfig } from './firebase.js';
+const router = express.Router();
 
 // Sample Route
 router.get('/', async (req, res) => {
   res.render('home', {
     layout: 'index',
     title: 'Home Page',
-    styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'sample.css',
-      'sample-partial.css'
-    ],
-    scripts: [ // Include every script used by the page.
-      'main.js',
-      'sample-partial.js',
-      'login.js',
-      'firebase.js'
-    ]
-  })
-})
+    styles: ['main.css'],
+    scripts: ['firebase.js', 'home.js'],
+    firebaseConfig,
+    auth,
+    db
+  });
+});
+
+router.get('/profile', async (req, res) => {
+  res.render('profile', {
+    layout: 'index',
+    title: 'Profile Page',
+    styles: ['main.css'],
+    scripts: ['firebase.js', 'profile.js'],
+    firebaseConfig,
+    auth,
+    db
+  });
+});
 
 // login Route
 router.get('/login', async (req, res) => {
   res.render('login', {
     layout: 'index',
-    title: 'login Page',
-    styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'login.css'
-    ],
-    scripts: [ // Include every script used by the page.
-      'login.js'
-    ],
+    title: 'Login Page',
+    styles: ['main.css', 'login.css'],
+    scripts: ['login.js'],
     firebaseConfig,
     auth,
     db
-  })
-})
+  });
+});
 
 // register Route
 router.get('/register', async (req, res) => {
   res.render('register', {
     layout: 'index',
-    title: 'register Page',
-    styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'register.css'
-    ],
-    scripts: [ // Include every script used by the page.
-      'register.js'
-    ],
+    title: 'Register Page',
+    styles: ['main.css', 'register.css'],
+    scripts: ['register.js'],
     firebaseConfig,
     auth,
     db
-  })
-})
+  });
+});
 
 router.get('/res-req', async (req, res) => {
   res.render('res-req', {
     layout: 'index',
     title: 'Research Request',
-    styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'register.css'
-    ],
-    scripts: [ // Include every script used by the page.
-      'res-req.js'
-    ],
+    styles: ['main.css', 'register.css'],
+    scripts: ['res-req.js', 'home.js'],
     firebaseConfig,
     auth,
     db
@@ -84,17 +69,26 @@ router.get('/res-resources', async (req, res) => {
   res.render('res-resources', {
     layout: 'index',
     title: 'Research Resources',
-    styles: [ // Include every style used when rendering this page.
-      'main.css',
-      'res-resources.css'
-    ],
-    scripts: [ // Include every script used by the page.
-      'res-resources.js'
-    ],
+    styles: ['main.css', 'res-resources.css'],
+    scripts: ['res-resources.js'],
     firebaseConfig,
     auth,
     db
   });
 });
 
-export { router }
+router.get('/research-details/:id', async (req, res) => {
+  res.render('research-details', {
+    layout: 'index',
+    title: 'Research Details',
+    styles: ['main.css', 'research-details.css'],
+    scripts: ['research-details.js'],
+    firebaseConfig,
+    auth,
+    db,
+    researchId: req.params.id,
+    userId: req.query.userId || ''
+  });
+});
+
+export { router };
