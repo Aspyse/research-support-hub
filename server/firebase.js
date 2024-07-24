@@ -1,9 +1,13 @@
 // Import the functions you need from the SDKs you need
 // https://firebase.google.com/docs/reference/js
-import 'dotenv/config'
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+//import 'dotenv/config'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+import { collection, addDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
+import { query, where, getDocs, updateDoc, doc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,10 +26,13 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
 // Module Exports
-const auth = getAuth()
-const db = getFirestore()
+const auth = getAuth(app)
+const db = getFirestore(app)
 
-export { auth, db, firebaseConfig }
+export { auth, db, createUserWithEmailAndPassword, collection, addDoc, 
+        signInWithEmailAndPassword, onAuthStateChanged, 
+        query, where, getDocs, updateDoc, doc }
+

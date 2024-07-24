@@ -5,7 +5,6 @@
 import express from 'express'
 
 // Firebase
-import { auth, db } from './firebase.js'
 const router = express.Router()
 
 
