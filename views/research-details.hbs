@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/res-resources.css">
+</head>
+<body>
+    <main>
+        <section class="research-details">
+            <h2 id="research-title"></h2>
+            <p id="research-desc"></p>
+            <p id="research-method"></p>
+            <p id="research-type"></p>
+            <p id="research-link"></p>
+            <p id="research-dates"></p>
+        </section>
+        <section class="proof-of-participation">
+            <h3>Submit Proof of Participation</h3>
+            <form id="proofForm">
+                <input type="hidden" id="userId" name="userId" value="{{userId}}">
+                <input type="hidden" id="researchId" name="researchId" value="{{researchId}}">
+                <input type="file" id="proofFile" accept="image/jpeg,image/png" required>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <script type="module" src="/js/research-details.js"></script>
+</body>
+</html>
