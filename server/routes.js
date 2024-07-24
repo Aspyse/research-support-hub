@@ -1,16 +1,16 @@
-import express from 'express';
+import express from 'express'
 
-const router = express.Router();
+const router = express.Router()
 
 // Sample Route
 router.get('/', async (req, res) => {
   res.render('home', {
     layout: 'index',
     title: 'Home Page',
-    styles: [ 
+    styles: [
       'main.css'
     ],
-    scripts: [ 
+    scripts: [
       'home.js',
       'main.js'
     ]
@@ -21,10 +21,10 @@ router.get('/profile', async (req, res) => {
   res.render('profile', {
     layout: 'index',
     title: 'Profile Page',
-    styles: [ 
+    styles: [
       'main.css'
     ],
-    scripts: [ 
+    scripts: [
       'profile.js',
       'main.js'
     ]
@@ -36,7 +36,7 @@ router.get('/login', async (req, res) => {
   res.render('login', {
     layout: 'index',
     title: 'Login Page',
-    styles: [ 
+    styles: [
       'main.css',
       'login.css'
     ],
@@ -60,8 +60,8 @@ router.get('/register', async (req, res) => {
       'register.js',
       'main.js'
     ]
-  });
-});
+  })
+})
 
 router.get('/res-req', async (req, res) => {
   res.render('res-req', {
@@ -69,8 +69,8 @@ router.get('/res-req', async (req, res) => {
     title: 'Research Request',
     styles: ['main.css', 'register.css'],
     scripts: ['res-req.js', 'main.js']
-  });
-});
+  })
+})
 
 router.get('/res-resources', async (req, res) => {
   res.render('res-resources', {
@@ -78,8 +78,8 @@ router.get('/res-resources', async (req, res) => {
     title: 'Research Resources',
     styles: ['main.css', 'res-resources.css'],
     scripts: ['res-resources.js', 'main.js']
-  });
-});
+  })
+})
 
 router.get('/research-details/:id', async (req, res) => {
   res.render('research-details', {
@@ -89,7 +89,7 @@ router.get('/research-details/:id', async (req, res) => {
     scripts: ['research-details.js', 'main.js'],
     researchId: req.params.id,
     userId: req.query.userId || ''
-  });
-});
+  })
+})
 
-export { router };
+export { router }

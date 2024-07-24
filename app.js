@@ -29,7 +29,7 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(router)
 
-app.use('/server', express.static(path.join(__dirname, 'server')));
+app.use('/server', express.static(path.join(__dirname, 'server')))
 
 // Listen on localhost
 app.listen(PORT, () => {

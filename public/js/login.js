@@ -1,18 +1,15 @@
-import {collection, signInWithEmailAndPassword, onAuthStateChanged} from '../server/firebase.js';
-import {auth, db, getDocs, query, where, updateDoc, doc} from '../server/firebase.js';
-
+import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', function () {
-  const registerButton = document.getElementById('loginButton');
+  const registerButton = document.getElementById('loginButton')
   registerButton.addEventListener('click', async function (event) {
-      await login(event);
-  });
-});
-
+    await login(event)
+  })
+})
 
 // Function to handle login
 export async function login (event) {
-  event.preventDefault();
+  event.preventDefault()
   console.log('Login started')
 
   const email = document.getElementById('email').value.trim()
