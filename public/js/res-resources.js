@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
 
+// Firebase configuration
 const firebaseConfig = {
     apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
     authDomain: 'cssweng-research-support-hub.firebaseapp.com',
@@ -11,8 +13,53 @@ const firebaseConfig = {
     measurementId: 'G-PDY7DZ01D3'
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (user) => {
+    const userNameSpan = document.getElementById('userName');
+    const authButton = document.getElementById('authButton');
+    if (user) {
+        currentUser = user;
+        try {
+            const usersRef = collection(db, 'users');
+            const q = query(usersRef, where('email', '==', user.email));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                const userDoc = querySnapshot.docs[0];
+                const userData = userDoc.data();
+                userNameSpan.textContent = `${userData.fullName}`;
+            } else {
+                userNameSpan.textContent = 'Hello, User';
+            }
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+            userNameSpan.textContent = '';
+        }
+
+        authButton.textContent = 'Logout';
+        authButton.href = '#';
+        authButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+            try {
+                await signOut(auth);
+                window.location.href = '/login';
+            } catch (error) {
+                console.error('Sign out error:', error);
+            }
+        });
+    } else {
+        currentUser = null;
+        userNameSpan.textContent = '';
+        authButton.textContent = 'Login';
+        authButton.href = '/login';
+    }
+});
 
 async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
     const resReqCollection = collection(db, 'research_requests');
@@ -38,7 +85,7 @@ async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
                 <span class="type-part">${research.typePart || ''}</span>
                 <h3>${research.title || ''}</h3>
                 <p>${research.desc || ''}</p>
-                <a href="/research-details/${doc.id}" class="button">Participate</a>
+                <a href="/research-details/${doc.id}?userId=${currentUser ? currentUser.uid : ''}" class="button">Participate</a>
             `;
 
             researchList.appendChild(researchCard);
