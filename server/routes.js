@@ -68,7 +68,7 @@ router.get('/res-req', async (req, res) => {
     layout: 'index',
     title: 'Research Request',
     styles: ['main.css', 'register.css'],
-    scripts: ['res-req.js']
+    scripts: ['res-req.js', 'main.js']
   });
 });
 
@@ -77,7 +77,7 @@ router.get('/res-resources', async (req, res) => {
     layout: 'index',
     title: 'Research Resources',
     styles: ['main.css', 'res-resources.css'],
-    scripts: ['res-resources.js']
+    scripts: ['res-resources.js', 'main.js']
   });
 });
 
@@ -86,7 +86,7 @@ router.get('/research-details/:id', async (req, res) => {
     layout: 'index',
     title: 'Research Details',
     styles: ['main.css', 'research-details.css'],
-    scripts: ['research-details.js'],
+    scripts: ['research-details.js', 'main.js'],
     researchId: req.params.id,
     userId: req.query.userId || ''
   });
