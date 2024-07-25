@@ -91,7 +91,9 @@ nav a, #auth-controls {
 }
 
 .login-button {
-  margin-left: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
 }
 
 nav a {
@@ -108,6 +110,7 @@ nav a {
   border-radius: 20px;
   cursor: pointer;
 }
+
 
 /* public/css/styles.css */
 body {
@@ -208,6 +211,6 @@ footer {
   }
 }
 
-nav a:active {
-  font-weight: bold;
-}
+
+
+
