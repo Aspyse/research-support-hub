@@ -11,6 +11,9 @@ console.log('User ID:', userId)
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch research details
+
+  
+
   try {
     if (!researchId) {
       throw new Error('Invalid research ID')
