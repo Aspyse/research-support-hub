@@ -10,12 +10,13 @@
     <link rel="stylesheet" href="/css/res-resources.css">
     <link rel="stylesheet" href="/css/header2.css">
 </head>
+<body>
     <header2 class="header2">
         <h1>Research Resources</h1>
     </header2>
     <main class="wrapper">
         <div class="container">
-            <div class="content">
+            <div class="research-summary">
                 <h2>{{totalProjects}} Active Projects</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -36,17 +37,20 @@
             </div>
         </div>
         <div class="container">
-            <div class="content">
+            <div class="research-list">
                 {{#each researchRequests}}
                 <div class="research-card">
                     <span class="type-part">{{typePart}}</span>
                     <h3>{{title}}</h3>
                     <p>{{desc}}</p>
-                    <a href="/research-details/{{@key}}?userId={{currentUser.uid}}" class="button">Participate</a>
+                    <div class="button-container">
+                        <a href="/research-details/{{@key}}?userId={{currentUser.uid}}" class="button">Participate</a>
+                    </div>
                 </div>
                 {{/each}}
             </div>
         </div>
     </main>
     <script type="module" src="/js/res-resources.js"></script>
+</body>
 </html>
