@@ -1,3 +1,4 @@
+
 .content {
     max-width: 100%;
 }
@@ -103,24 +104,16 @@
     flex: 1 1 calc(33.333% - 2rem);
     box-sizing: border-box;
     max-width: calc(33.333% - 2rem);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative; /* Add this line to position child elements absolutely */
 }
 
 .research-card h3 {
     margin-top: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0rem; /* Increased margin to make space for type-part */
 }
 
 .research-card p {
     margin-bottom: 1rem;
-}
-
-.research-card .button-container {
-    margin-top: auto;
-    padding-top: 1rem;
 }
 
 .research-card .button {
@@ -133,9 +126,9 @@
 }
 
 .type-part {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    position: absolute; /* Position the element absolutely */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
     font-size: 0.9em;
     color: #ffffff;
     padding: 2px 5px;
@@ -160,9 +153,11 @@
     border: none;
     padding: 10px 20px;
     font-size: 16px;
+    border: none;
     cursor: pointer;
     outline: none;
 }
+
 
 .dropbtn:after {
     content: ' ▼';

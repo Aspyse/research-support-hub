@@ -8,8 +8,6 @@ router.get('/', async (req, res) => {
     layout: 'index',
     title: 'Home Page',
     styles: [
-      'header.css',
-      'header2.css',
       'main.css'
     ],
     scripts: [
