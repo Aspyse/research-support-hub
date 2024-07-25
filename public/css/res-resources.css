@@ -1,0 +1,215 @@
+
+.content {
+    max-width: 100%;
+}
+
+.research-summary {
+    background-color: #333;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.research-summary h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.research-summary p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.research-search {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #FFFFFF;
+    color: #000;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.search-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-input {
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.search-button {
+    background-color: #4CAF50;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.search-button img {
+    width: 16px;
+    height: 16px;
+}
+
+.research-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.research-card {
+    background-color: #45454B;
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex: 1 1 calc(33.333% - 2rem);
+    box-sizing: border-box;
+    max-width: calc(33.333% - 2rem);
+    position: relative; /* Add this line to position child elements absolutely */
+}
+
+.research-card h3 {
+    margin-top: 0.9rem;
+    margin-bottom: 0rem; /* Increased margin to make space for type-part */
+}
+
+.research-card p {
+    margin-bottom: 1rem;
+}
+
+.research-card .button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.type-part {
+    position: absolute; /* Position the element absolutely */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    font-size: 0.9em;
+    color: #ffffff;
+    padding: 2px 5px;
+    background-color: #3587e6;
+    border-radius: 3px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.search-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #43b671;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.dropbtn:after {
+    content: ' ▼';
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.search-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.search-dropdown:hover .dropbtn {
+    background-color: #43b671;
+}
+
+.search-input {
+    padding: 10px;
+    margin-left: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    outline: none;
+    flex: 1;
+}
+
+.search-button {
+    background-color: #43b671;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.search-button img {
+    width: 20px;
+    height: 20px;
+}
