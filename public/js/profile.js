@@ -1,22 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js'
-import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
-import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
-  authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-  projectId: 'cssweng-research-support-hub',
-  storageBucket: 'cssweng-research-support-hub.appspot.com',
-  messagingSenderId: '332020336850',
-  appId: '1:332020336850:web:ac748046a1e82e05e0050b',
-  measurementId: 'G-PDY7DZ01D3'
-}
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
-const db = getFirestore(app)
+import { onAuthStateChanged, signOut, auth, db, collection, query, where, getDocs } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   onAuthStateChanged(auth, async (user) => {
@@ -44,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
           fullNameElement.textContent = `Full Name: ${userData.fullName || 'N/A'}`
           emailElement.textContent = `Email: ${userData.email || 'N/A'}`
         } else {
-          userNameSpan.textContent = 'Hello, User'
+          userNameSpan.textContent = ''
           IDElement.textContent = 'ID Number: N/A'
           fullNameElement.textContent = 'Full Name: N/A'
           emailElement.textContent = 'Email: N/A'
@@ -56,9 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
         fullNameElement.textContent = 'Full Name: N/A'
         emailElement.textContent = 'Email: N/A'
       }
-      // Sign out the user
+      // change login button to logout
       authButton.textContent = 'Logout'
-      authButton.href = '#' // No need for a URL, it's handled in JS
+      authButton.href = '#'
+      // Sign out the user
       authButton.addEventListener('click', async (event) => {
         event.preventDefault()
         try {
