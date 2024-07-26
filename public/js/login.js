@@ -1,29 +1,53 @@
 import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', function () {
-  const registerButton = document.getElementById('loginButton')
-  registerButton.addEventListener('click', async function (event) {
+  const loginButton = document.getElementById('loginButton')
+  loginButton.addEventListener('click', async function (event) {
     await login(event)
   })
 })
 
 // Function to handle login
-export async function login (event) {
+export async function login(event) {
   event.preventDefault()
   console.log('Login started')
 
-  const email = document.getElementById('email').value.trim()
+  const identifier = document.getElementById('identifier').value.trim()
   const password = document.getElementById('password').value.trim()
 
   // Input validation
-  if (!email || !password) {
-    alert('Email and Password are required.')
+  if (!identifier || !password) {
+    alert('ID/Email and Password are required.')
     return
   }
 
-  if (!validateEmail(email)) {
-    alert('Please use your DLSU email.')
+  if (!validateIdentifier(identifier)) {
+    alert('Invalid ID/Email format.')
     return
+  }
+
+  let email = identifier
+
+  // If the identifier is an ID, find the corresponding email
+  if (!validateEmail(identifier)) {
+    try {
+      const usersRef = collection(db, 'users')
+      const q = query(usersRef, where('id', '==', identifier))
+      const querySnapshot = await getDocs(q)
+
+      if (querySnapshot.empty) {
+        console.error('No user document found for ID:', identifier)
+        alert('No user found. Please register first.')
+        return
+      }
+
+      const userDoc = querySnapshot.docs[0]
+      email = userDoc.data().email
+    } catch (error) {
+      console.error('Error fetching user email by ID:', error)
+      alert('Error fetching user email. Please try again.')
+      return
+    }
   }
 
   try {
@@ -71,8 +95,19 @@ function validateEmail (email) {
   return re.test(email)
 }
 
+// Function to validate ID format
+function validateID(id) {
+  const re = /^[0-9]{8,}$/
+  return re.test(id)
+}
+
+// Function to validate ID or email format
+function validateIdentifier(identifier) {
+  return validateEmail(identifier) || validateID(identifier)
+}
+
 // Function to handle authentication errors
-function handleAuthError (error) {
+function handleAuthError(error) {
   const errorCode = error.code
   let errorMessage
 
