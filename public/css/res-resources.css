@@ -78,9 +78,10 @@
 }
 
 .search-button {
-    background-color: #4CAF50;
+    background-color: #43B570;
     border: none;
-    padding: 0.5rem 1rem;
+    color: white;
+    padding: 0.8rem 1.2rem;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -125,7 +126,7 @@
 
 .research-card .button {
     display: inline-block;
-    background-color: #4CAF50;
+    background-color: #43B570;
     color: #FFFFFF;
     padding: 0.5rem 1rem;
     text-decoration: none;
@@ -203,18 +204,4 @@
     border: 1px solid #ddd;
     outline: none;
     flex: 1;
-}
-
-.search-button {
-    background-color: #43b671;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-
-.search-button img {
-    width: 20px;
-    height: 20px;
 }

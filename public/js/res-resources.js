@@ -74,7 +74,7 @@ async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
                 <div class="button-container">
                     ${research.userId === (currentUser ? currentUser.uid : '') 
                         ? `<a href="/edit-research/${doc.id}" class="button">Edit</a>`
-                        : `<a href="/research-details/${doc.id}?userId=${currentUser ? currentUser.uid : ''}" class="button">Participate</a>`
+                        : `<a href="/res-details/${doc.id}?userId=${currentUser ? currentUser.uid : ''}" class="button">Participate</a>`
                     }
                 </div>
             `;
