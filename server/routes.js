@@ -1,6 +1,6 @@
-import express from 'express'
+import express from 'express';
 
-const router = express.Router()
+const router = express.Router();
 
 // Sample Route
 router.get('/', async (req, res) => {
@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
       'home.js',
       'main.js'
     ]
-  })
-})
+  });
+});
 
 router.get('/profile', async (req, res) => {
   res.render('profile', {
@@ -30,8 +30,8 @@ router.get('/profile', async (req, res) => {
       'profile.js',
       'main.js'
     ]
-  })
-})
+  });
+});
 
 // login Route
 router.get('/login', async (req, res) => {
@@ -46,8 +46,8 @@ router.get('/login', async (req, res) => {
       'login.js',
       'main.js'
     ]
-  })
-})
+  });
+});
 
 // register Route
 router.get('/register', async (req, res) => {
@@ -62,8 +62,8 @@ router.get('/register', async (req, res) => {
       'register.js',
       'main.js'
     ]
-  })
-})
+  });
+});
 
 router.get('/res-req', async (req, res) => {
   res.render('res-req', {
@@ -71,8 +71,8 @@ router.get('/res-req', async (req, res) => {
     title: 'Research Request',
     styles: ['main.css', 'register.css'],
     scripts: ['res-req.js', 'main.js']
-  })
-})
+  });
+});
 
 router.get('/res-resources', async (req, res) => {
   res.render('res-resources', {
@@ -80,8 +80,8 @@ router.get('/res-resources', async (req, res) => {
     title: 'Research Resources',
     styles: ['main.css', 'res-resources.css'],
     scripts: ['res-resources.js', 'main.js']
-  })
-})
+  });
+});
 
 router.get('/research-details/:id', async (req, res) => {
   res.render('research-details', {
@@ -91,7 +91,17 @@ router.get('/research-details/:id', async (req, res) => {
     scripts: ['research-details.js', 'main.js'],
     researchId: req.params.id,
     userId: req.query.userId || ''
-  })
-})
+  });
+});
 
-export { router }
+router.get('/edit-research/:id', async (req, res) => {
+  res.render('edit-research', {
+    layout: 'index',
+    title: 'Edit Research Request',
+    styles: ['main.css', 'edit-research.css'],
+    scripts: ['edit-research.js', 'main.js'],
+    researchId: req.params.id
+  });
+});
+
+export { router };

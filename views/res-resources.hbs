@@ -39,12 +39,16 @@
         <div class="container">
             <div class="research-list">
                 {{#each researchRequests}}
-                <div class="research-card">
+                <div class="research-card" data-user-id="{{userId}}">
                     <span class="type-part">{{typePart}}</span>
                     <h3>{{title}}</h3>
                     <p>{{desc}}</p>
                     <div class="button-container">
-                        <a href="/research-details/{{@key}}?userId={{currentUser.uid}}" class="button">Participate</a>
+                        {{#ifEquals userId currentUser.uid}}
+                            <a href="/edit-research/{{@key}}" class="button">Edit</a>
+                        {{else}}
+                            <a href="/research-details/{{@key}}?userId={{currentUser.uid}}" class="button">Participate</a>
+                        {{/ifEquals}}
                     </div>
                 </div>
                 {{/each}}

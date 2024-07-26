@@ -41,6 +41,9 @@ onAuthStateChanged(auth, async (user) => {
         authButton.textContent = 'Login';
         authButton.href = '/login';
     }
+
+    // Fetch and display research requests
+    fetchAndDisplayResearchRequests();
 });
 
 async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
@@ -62,12 +65,18 @@ async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
         if (matchesQuery) {
             const researchCard = document.createElement('div');
             researchCard.className = 'research-card';
+            researchCard.setAttribute('data-user-id', research.userId);
 
             researchCard.innerHTML = `
                 <span class="type-part">${research.typePart || ''}</span>
                 <h3>${research.title || ''}</h3>
                 <p>${research.desc || ''}</p>
-                <a href="/research-details/${doc.id}?userId=${currentUser ? currentUser.uid : ''}" class="button">Participate</a>
+                <div class="button-container">
+                    ${research.userId === (currentUser ? currentUser.uid : '') 
+                        ? `<a href="/edit-research/${doc.id}" class="button">Edit</a>`
+                        : `<a href="/research-details/${doc.id}?userId=${currentUser ? currentUser.uid : ''}" class="button">Participate</a>`
+                    }
+                </div>
             `;
 
             researchList.appendChild(researchCard);
