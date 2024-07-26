@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 // Function to handle login
-export async function login(event) {
+export async function login (event) {
   event.preventDefault()
   console.log('Login started')
 
@@ -96,18 +96,18 @@ function validateEmail (email) {
 }
 
 // Function to validate ID format
-function validateID(id) {
+function validateID (id) {
   const re = /^[0-9]{8,}$/
   return re.test(id)
 }
 
 // Function to validate ID or email format
-function validateIdentifier(identifier) {
+function validateIdentifier (identifier) {
   return validateEmail(identifier) || validateID(identifier)
 }
 
 // Function to handle authentication errors
-function handleAuthError(error) {
+function handleAuthError (error) {
   const errorCode = error.code
   let errorMessage
 
