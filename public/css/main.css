@@ -45,7 +45,14 @@ nav a {
   color: #333;
   font-weight: 500;
 }
-
+.login-button {
+  background-color: #ffffff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 /* public/css/styles.css */
 body {
