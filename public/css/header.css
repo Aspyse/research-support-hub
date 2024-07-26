@@ -23,7 +23,7 @@ header {
   }
   
   .login-button {
-    background-color: var(--confirm);
+    background-color: #43B570;
     color: white;
     border: none;
     padding: 0.625rem 1.25rem;
