@@ -1,4 +1,4 @@
-import { auth, db, createUserWithEmailAndPassword, collection, addDoc } from '../server/firebase.js'
+import { auth, db, createUserWithEmailAndPassword, collection, addDoc, where, query, getDocs } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', function () {
   const registerButton = document.getElementById('registerButton')
@@ -16,6 +16,8 @@ export async function register (event) {
   const email = document.getElementById('email').value
   const password = document.getElementById('password').value
   const fullName = document.getElementById('fullName').value
+  const isAdmin = 0
+  const points = 0
 
   // Input validation
   if (!id || !email || !password || !fullName) {
@@ -28,13 +30,28 @@ export async function register (event) {
     return
   }
 
-  if (id.length < 8) {
-    alert('ID must be at least 8 characters long.')
+  if (id.length !== 8) {
+    alert('DLSU ID must be 8 characters long.')
     return
   }
 
   if (!validateEmail(email)) {
-    alert('Invalid email format.')
+    alert('Please use your DLSU email.')
+    return
+  }
+
+  try {
+    const usersRef = collection(db, 'users')
+    const q = query(usersRef, where('id', '==', id))
+    const querySnapshot = await getDocs(q)
+
+    if (!querySnapshot.empty) {
+      alert('ID is already taken.')
+      return
+    }
+  } catch (error) {
+    console.error('Error checking ID in the database:', error)
+    alert('Error checking ID in the database: ' + error.message)
     return
   }
 
@@ -45,6 +62,8 @@ export async function register (event) {
       id,
       email,
       fullName,
+      isAdmin,
+      points,
       last_login: Date.now()
     }
 
@@ -59,6 +78,6 @@ export async function register (event) {
 }
 
 function validateEmail (email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const re = /^[^\s@]+@dlsu\.edu\.ph$/
   return re.test(email)
 }
