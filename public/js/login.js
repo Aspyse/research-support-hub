@@ -22,7 +22,7 @@ export async function login (event) {
   }
 
   if (!validateEmail(email)) {
-    alert('Invalid email format.')
+    alert('Please use your DLSU email.')
     return
   }
 
@@ -67,7 +67,7 @@ export async function login (event) {
 
 // Function to validate email format
 function validateEmail (email) {
-  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  const re = /^[^\s@]+@dlsu\.edu\.ph$/
   return re.test(email)
 }
 
