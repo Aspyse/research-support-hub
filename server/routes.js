@@ -45,7 +45,7 @@ router.get('/res-req', async (req, res) => {
   res.render('res-req', {
     layout: 'index',
     title: 'Research Request',
-    styles: ['main.css', 'register.css', 'header.css', 'header2.css'],
+    styles: ['main.css', 'register.css', 'header.css', 'header2.css', 'res-request.css'],
     scripts: ['res-req.js', 'main.js']
   });
 });
