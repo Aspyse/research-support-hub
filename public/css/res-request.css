@@ -1,4 +1,4 @@
-#editResearchForm {
+#resReqForm {
     display: flex;
     flex-direction: column; 
     max-width: 600px; 
@@ -9,16 +9,19 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#editResearchForm label {
+#resReqForm label {
     font-weight: bold;
     color: #45454B;
     margin-bottom: 5px;
 }
 
-#editResearchForm input[type="text"],
-#editResearchForm input[type="date"],
-#editResearchForm textarea,
-#editResearchForm select {
+
+#resReqForm input[type="text"],
+#resReqForm input[type="email"],
+#resReqForm input[type="date"],
+#resReqForm input[type="url"],
+#resReqForm textarea,
+#resReqForm select {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -28,12 +31,12 @@
     box-sizing: border-box;
 }
 
-#editResearchForm textarea {
+#resReqForm textarea {
     height: 100px;
     resize: vertical;
 }
 
-#editResearchForm button {
+#resReqForm button {
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -44,6 +47,6 @@
     margin-top: 10px;
 }
 
-#editResearchForm button:hover {
+#resReqForm button:hover {
     background-color: #03713e;
 }
