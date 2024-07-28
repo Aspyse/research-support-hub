@@ -45,7 +45,7 @@ router.get('/res-req', async (req, res) => {
   res.render('res-req', {
     layout: 'index',
     title: 'Research Request',
-    styles: ['main.css', 'register.css', 'header.css', 'header2.css', 'res-request.css'],
+    styles: ['main.css', 'register.css', 'header.css', 'header2.css'],
     scripts: ['res-req.js', 'main.js']
   });
 });
@@ -79,5 +79,15 @@ router.get('/edit-research/:id', async (req, res) => {
     researchId: req.params.id
   });
 });
+
+router.get('/admin', async (req, res) => {
+  res.render('admin', {
+      layout: 'index',
+      title: 'Admin Dashboard',
+      styles: ['main.css', 'admin.css','header.css', 'header2.css'],
+      scripts: ['admin.js', 'main.js']
+  });
+});
+
 
 export { router };
