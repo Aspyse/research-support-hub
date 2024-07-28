@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
       dgLink,
       startDate,
       endDate,
-      isApproved: false, // Add the isApproved field with default value false
+      isApproved: "pending", // Add the isApproved field with default value false
       userId // Include the user's ID
     }
 
