@@ -62,7 +62,7 @@ async function fetchAndDisplayResearchRequests(query = '', filterBy = 'title') {
             matchesQuery = true;
         }
 
-        if (matchesQuery) {
+        if (matchesQuery && research.isApproved === 'approved') {
             const researchCard = document.createElement('div');
             researchCard.className = 'research-card';
             researchCard.setAttribute('data-user-id', research.userId);
@@ -89,10 +89,12 @@ async function updateResearchSummary() {
     const resReqCollection = collection(db, 'research_requests');
     const resReqSnapshot = await getDocs(resReqCollection);
     const totalProjects = resReqSnapshot.size;
-    const researchSummaryElement = document.querySelector('.research-summary h2');
 
-    researchSummaryElement.textContent = `${totalProjects} Active Projects`;
-    fetchAndDisplayResearchRequests();
+    // Count the number of approved research requests
+    const approvedCount = resReqSnapshot.docs.filter(doc => doc.data().isApproved === 'approved').length;
+
+    const researchSummaryElement = document.querySelector('.research-summary h2');
+    researchSummaryElement.textContent = `${approvedCount} Approved Projects`;
 }
 
 // Fetch and display research requests on page load

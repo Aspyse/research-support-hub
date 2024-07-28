@@ -1,22 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js'
-import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js'
-import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyCo9nryMt5uZYsXxcKL7b9uqcxCQ3L6bV0',
-  authDomain: 'cssweng-research-support-hub.firebaseapp.com',
-  projectId: 'cssweng-research-support-hub',
-  storageBucket: 'cssweng-research-support-hub.appspot.com',
-  messagingSenderId: '332020336850',
-  appId: '1:332020336850:web:ac748046a1e82e05e0050b',
-  measurementId: 'G-PDY7DZ01D3'
-}
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const auth = getAuth(app)
-const db = getFirestore(app)
+import { collection, signOut, onAuthStateChanged, auth, db, getDocs, query, where } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   // code for session handling
@@ -37,16 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
           // current user header sign in
           userNameSpan.textContent = `${userData.fullName}`
         } else {
-          userNameSpan.textContent = 'Hello, User'
+          userNameSpan.textContent = ''
         }
       } catch (error) {
         console.error('Error fetching user data:', error)
         userNameSpan.textContent = ''
       }
 
-      // Sign out the user
+      // change login button to logout
       authButton.textContent = 'Logout'
       authButton.href = '#'
+      // Sign out the user
       authButton.addEventListener('click', async (event) => {
         event.preventDefault()
         try {

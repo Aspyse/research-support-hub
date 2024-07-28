@@ -15,7 +15,7 @@ import {
 // firebase-firestore
 import {
   getFirestore, collection, addDoc,
-  query, where, getDocs, getDoc, updateDoc, doc
+  query, where, getDocs, getDoc, updateDoc, doc, increment
 } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js'
 
 // firebase-firestore
@@ -49,6 +49,5 @@ export {
   auth, db, createUserWithEmailAndPassword, collection, addDoc,
   signInWithEmailAndPassword, onAuthStateChanged,
   query, where, getDocs, getDoc, updateDoc, doc, signOut, storage,
-  ref, uploadBytes, getDownloadURL
+  ref, uploadBytes, getDownloadURL, increment
 }
-

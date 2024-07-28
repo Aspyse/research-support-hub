@@ -80,4 +80,14 @@ router.get('/edit-research/:id', async (req, res) => {
   });
 });
 
+router.get('/admin', async (req, res) => {
+  res.render('admin', {
+      layout: 'index',
+      title: 'Admin Dashboard',
+      styles: ['main.css', 'admin.css','header.css', 'header2.css'],
+      scripts: ['admin.js', 'main.js']
+  });
+});
+
+
 export { router };
