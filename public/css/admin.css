@@ -1,0 +1,99 @@
+/* General styles for the admin page */
+body {
+    background-color: #343a40; /* Dark background color */
+    color: #fff; /* Light text color */
+    font-family: Arial, sans-serif;
+}
+
+/* Admin menu styles */
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #3a3f47; /* Slightly lighter background for the menu */
+    width: 250px;
+    height: 100px;
+}
+
+.admin-menu .button {
+    background-color: #28a745; /* Green button background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.admin-menu button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.admin-menu button.active {
+    background-color: #218838; /* Active button background */
+}
+
+/* Content area styles */
+.admin-content {
+    padding: 20px;
+    /* margin-left: 270px; Make space for the menu */
+    background-color: #3a3f47; /* Match the menu background color */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Card styles */
+.user-card, .request-card {
+    background-color: #454d55; /* Dark card background */
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Rounded corners */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-card h3, .request-card h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.user-card p, .request-card p {
+    margin: 5px 0;
+}
+
+/* Button styles inside cards */
+.user-card button, .request-card button {
+    background-color: #28a745; /* Green button background */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px;
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.user-card button:hover, .request-card button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Research request status styles */
+.request-card .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px; /* Slightly rounded corners */
+    color: #fff; /* White text */
+}
+
+.status.pending {
+    background-color: gray;
+}
+
+.status.approved {
+    background-color: green;
+}
+
+.status.rejected {
+    background-color: red;
+}
