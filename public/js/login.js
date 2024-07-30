@@ -1,4 +1,4 @@
-import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc } from '../server/firebase.js'
+import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc, signOut } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', function () {
   const loginButton = document.getElementById('loginButton')
@@ -68,8 +68,16 @@ export async function login(event) {
 
     const userDoc = querySnapshot.docs[0]
     const userRef = doc(db, 'users', userDoc.id)
+    const userData = userDoc.data()
 
     console.log('Firestore Document Reference:', userRef.path)
+
+    if (userData.isBanned) {
+      console.warn('User is banned:', email)
+      await signOut(auth)
+      alert('You are banned')
+      return
+    }
 
     await updateDoc(userRef, { last_login: Date.now() })
 
