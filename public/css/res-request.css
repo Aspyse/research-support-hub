@@ -70,3 +70,33 @@
     display: flex;
     margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+    #resReqForm .form-columns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #resReqForm .form-columns .column {
+        width: 100%;
+    }
+}
+
+#resReqForm .button-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+#resReqForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#resReqForm button:hover {
+    background-color: #03713e;
+}

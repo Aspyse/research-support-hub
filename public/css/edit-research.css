@@ -62,3 +62,33 @@
 #editResearchForm button:hover {
     background-color: #03713e;
 }
+
+@media (max-width: 768px) {
+    #editResearchForm .form-columns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #editResearchForm .form-columns .column {
+        width: 100%;
+    }
+}
+
+#editResearchForm .button-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+#editResearchForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#editResearchForm button:hover {
+    background-color: #03713e;
+}
