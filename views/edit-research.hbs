@@ -4,43 +4,48 @@
     </header2>
 
     <main class="wrapper"> 
-        <div class="form-container">
-            <div class="container">
-                <div class="content">
-                    <h1>Edit Details</h1>
-        
-                        <form id="editResearchForm">
-                            <div>
-                                <label for="title">Title</label>
-                                <input type="text" id="title" name="title" required>
-                        
-                                <label for="desc">Description</label>
-                                <textarea id="desc" name="desc" required></textarea>
-                        
-                                <label for="contact">Contact</label>
-                                <input type="text" id="contact" name="contact" required>
-                        
-                                <label for="dg_method">Method</label>
-                                <input type="text" id="dg_method" name="dg_method" required>
-                        
-                                <label for="typeOfParticipation">Type of Participation</label>
-                                <input type="text" id="typeOfParticipation" name="typeOfParticipation" required>
-                        
-                                <label for="dg_link">Link</label>
-                                <input type="text" id="dg_link" name="dg_link">
-                        
-                                <label for="start_date">Start Date</label>
-                                <input type="date" id="start_date" name="start_date" required>
-                        
-                                <label for="end_date">End Date</label>
-                                <input type="date" id="end_date" name="end_date" required>
-                            
-                                <button type="submit">Update Research Request</button>
-                            </div>
-                        </form>
+        <div class="container">
+            <form id="editResearchForm">
+                <h3 style="color: #45454b;">Edit Request Details</h3>
+                <div>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" placeholder="Enter Research Title" required>
+
+                    <label for="desc">Description:</label>
+                    <textarea id="desc" name="desc" placeholder="Write a description" required></textarea>
+
+                    <div class="form-columns">
+                        <div class="column">
+                            <label for="contact">Contact Details (Email):</label>
+                            <input type="email" id="contact" name="contact" placeholder="someone@gmail.com" required>
+
+                            <label for="dg_method">Data Gathering Method:</label>
+                            <select id="dg_method" name="dg_method" required>
+                                <option value="Qualitative">Qualitative</option>
+                                <option value="Quantitative">Quantitative</option>
+                            </select>
+
+                            <label for="typeOfParticipation">Type of Participation:</label>
+                            <input type="text" id="typeOfParticipation" name="typeOfParticipation" placeholder="Survey, Interview, etc." required>
+                        </div>
+
+                        <div class="column">
+                            <label for="dg_link">Forms Link:</label>
+                            <input type="url" id="dg_link" name="dg_link" placeholder="(For Surveys) Enter Link">
+
+                            <label for="start_date">Start Date:</label>
+                            <input type="date" id="start_date" name="start_date" required>
+
+                            <label for="end_date">End Date:</label>
+                            <input type="date" id="end_date" name="end_date" required>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" id="submitEditButton">Update Research Request</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </main>
 </body>
