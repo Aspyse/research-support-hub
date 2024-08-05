@@ -1,0 +1,33 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.about-us-container {
+    display: grid;
+
+    gap: 40px;
+    padding: 20px;
+    justify-items: center;
+}
+.about-us-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+    max-width: 300px;
+    text-align: center;
+}
+.about-us-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.about-us-card h3 {
+    margin: 10px 0;
+}
+.about-us-card p {
+    margin: 0;
+    font-size: 16px;
+}
