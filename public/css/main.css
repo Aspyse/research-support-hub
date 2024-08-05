@@ -141,7 +141,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 60px;
+  padding: 30px 60px;
   background-color: #333;
   color: white;
 }
@@ -176,7 +176,8 @@ body {
   justify-content: center;
   height: 100;        
   width: 100%;           
-  padding: 20px;         
+  padding: 20px;   
+  color: white;      
 }
 
 /* page layout  */
