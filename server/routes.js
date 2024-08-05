@@ -89,5 +89,24 @@ router.get('/admin', async (req, res) => {
   });
 });
 
+router.get('/faq', async (req, res) => {
+  res.render('faq', {
+      layout: 'index',
+      title: 'FAQ Page',
+      styles: ['main.css', 'faq.css', 'header.css', 'header2.css'],
+      scripts: ['faq.js', 'main.js']
+  });
+});
+
+router.get('/about-us', async (req, res) => {
+  res.render('about-us', {
+      layout: 'index',
+      title: 'About ',
+      styles: ['main.css', 'about-us.css','header.css', 'header2.css'],
+      scripts: ['about-us.js', 'main.js']
+  });
+});
+
+
 
 export { router };
