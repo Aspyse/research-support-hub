@@ -69,6 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
       return
     }
 
+    // Validate the dates
+    if (new Date(endDate) <= new Date(startDate)) {
+      alert('End date must be after the start date.')
+      return
+    }
+
     const userId = user.uid
 
     const newResReq = {
