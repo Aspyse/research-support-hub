@@ -1,0 +1,7 @@
+/* FAQ page specific styles */
+.faq {
+    color: white;
+}
+.edit-faq-btn {
+    display: none; /* Hide by default */
+}
