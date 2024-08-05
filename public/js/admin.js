@@ -1,7 +1,11 @@
-import { auth, db, collection, getDocs, query, updateDoc, doc, where, increment, signOut } from '../server/firebase.js';
+import { auth, db, collection, getDocs, query, updateDoc, doc, where, increment, signOut, getDoc, addDoc, deleteDoc } from '../server/firebase.js';
 
+// Existing event listeners
 document.getElementById('view-users-btn').addEventListener('click', viewAllUsers);
 document.getElementById('view-requests-btn').addEventListener('click', viewAllResearchRequests);
+document.getElementById('edit-announcements-btn').addEventListener('click', editAnnouncements);
+document.getElementById('edit-faqs-btn').addEventListener('click', editFAQs);
+document.getElementById('edit-about-us-btn').addEventListener('click', editAboutUs);
 
 async function viewAllUsers() {
     const adminContent = document.getElementById('admin-content');
@@ -127,8 +131,27 @@ async function viewAllResearchRequests() {
     const requestsRef = collection(db, 'research_requests');
     const querySnapshot = await getDocs(requestsRef);
 
-    querySnapshot.forEach(doc => {
-        const request = doc.data();
+    for (const docSnapshot of querySnapshot.docs) {
+        const request = docSnapshot.data();
+        
+        if (!request.userId) {
+            console.error('User ID is missing in the research request:', request);
+            continue;
+        }
+
+        // Fetch the user document using the userId (uid) from the research request
+        const usersRef = collection(db, 'users');
+        const userQuery = query(usersRef, where('uid', '==', request.userId));
+        const userSnapshot = await getDocs(userQuery);
+
+        let userFullName = 'Unknown User';
+        if (!userSnapshot.empty) {
+            const userDoc = userSnapshot.docs[0].data();
+            userFullName = userDoc.fullName;
+        } else {
+            console.error('User document not found for userId:', request.userId);
+        }
+
         const requestCard = document.createElement('div');
         requestCard.classList.add('request-card');
         
@@ -136,14 +159,17 @@ async function viewAllResearchRequests() {
         
         requestCard.innerHTML = `
             <h3>${request.title}</h3>
-            <p>Requested by: ${request.userName}</p>
-            <p>Type: ${request.type}</p>
-            <p>Status: <span class="status ${request.isApproved}">${request.isApproved}</span></p>
-            <button class="update-request-status-btn" data-request-id="${doc.id}" data-status="approved">Approve</button>
-            <button class="update-request-status-btn" data-request-id="${doc.id}" data-status="disapproved">Disapprove</button>
+            <p>Description: ${request.desc}</p>
+            <p>Requested by: ${userFullName}</p>
+            <p>Type: ${request.typePart}</p>
+            <p>Start Date: ${request.startDate}</p>
+            <p>Start Date: ${request.endDate}</p>
+            <p>Status: <span class="status ${statusColor}">${request.isApproved}</span></p>
+            <button class="update-request-status-btn" data-request-id="${docSnapshot.id}" data-status="approved">Approve</button>
+            <button class="update-request-status-btn" data-request-id="${docSnapshot.id}" data-status="disapproved">Disapprove</button>
         `;
         adminContent.appendChild(requestCard);
-    });
+    }
 
     // Attach event listeners for newly added buttons
     document.querySelectorAll('.update-request-status-btn').forEach(button => {
@@ -160,8 +186,128 @@ async function updateRequestStatus(requestId, isApproved) {
     viewAllResearchRequests(); // Refresh the request list
 }
 
+// Function to edit Announcements
+async function editAnnouncements() {
+    const adminContent = document.getElementById('admin-content');
+    adminContent.innerHTML = ''; // Clear current content
+
+    // Add form for adding a new announcement
+    const addAnnouncementForm = document.createElement('div');
+    addAnnouncementForm.classList.add('announcement-card');
+    addAnnouncementForm.innerHTML = `
+        <h3>Add New Announcement</h3>
+        <input type="text" id="new-announcement-title" placeholder="Title">
+        <textarea id="new-announcement-content" placeholder="Content"></textarea>
+        <button id="add-announcement-btn">Add Announcement</button>
+    `;
+    adminContent.appendChild(addAnnouncementForm);
+
+    // Event listener for adding a new announcement
+    document.getElementById('add-announcement-btn').addEventListener('click', async () => {
+        const title = document.getElementById('new-announcement-title').value;
+        const content = document.getElementById('new-announcement-content').value;
+        if (title && content) {
+            await addDoc(collection(db, 'announcements'), {
+                title: title,
+                content: content
+            });
+            alert('Announcement added successfully.');
+            editAnnouncements(); // Refresh the announcements list
+        } else {
+            alert('Please fill out both fields.');
+        }
+    });
+
+    // Fetch and display existing announcements
+    const announcementsRef = collection(db, 'announcements');
+    const querySnapshot = await getDocs(announcementsRef);
+
+    querySnapshot.forEach(doc => {
+        const announcement = doc.data();
+        const announcementCard = document.createElement('div');
+        announcementCard.classList.add('announcement-card');
+        announcementCard.innerHTML = `
+            <h3>Edit Announcement</h3>
+            <input type="text" class="announcement-title" value="${announcement.title}" placeholder="Title">
+            <textarea class="announcement-content" placeholder="Content">${announcement.content}</textarea>
+            <button class="update-announcement-btn" data-doc-id="${doc.id}">Update Announcement</button>
+            <button class="delete-announcement-btn" data-doc-id="${doc.id}">Delete Announcement</button>
+        `;
+        adminContent.appendChild(announcementCard);
+    });
+
+    // Event listeners for updating and deleting announcements
+    document.querySelectorAll('.update-announcement-btn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const docId = button.getAttribute('data-doc-id');
+            const title = button.previousElementSibling.previousElementSibling.value;
+            const content = button.previousElementSibling.value;
+            const docRef = doc(db, 'announcements', docId);
+            await updateDoc(docRef, {
+                title: title,
+                content: content
+            });
+            alert('Announcement updated successfully.');
+        });
+    });
+
+    document.querySelectorAll('.delete-announcement-btn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const docId = button.getAttribute('data-doc-id');
+            const docRef = doc(db, 'announcements', docId);
+            await deleteDoc(docRef);
+            alert('Announcement deleted successfully.');
+            editAnnouncements(); // Refresh the announcements list
+        });
+    });
+}
+
+// Function to edit FAQs
+async function editFAQs() {
+    const adminContent = document.getElementById('admin-content');
+    adminContent.innerHTML = ''; // Clear current content
+
+    const faqsRef = collection(db, 'faqs');
+    const querySnapshot = await getDocs(faqsRef);
+
+    querySnapshot.forEach(doc => {
+        const faq = doc.data();
+        const faqCard = document.createElement('div');
+        faqCard.classList.add('faq-card');
+        faqCard.innerHTML = `
+            <h3>Edit FAQ</h3>
+            <input type="text" class="faq-question" value="${faq.question}" placeholder="Question">
+            <textarea class="faq-answer" placeholder="Answer">${faq.answer}</textarea>
+            <button class="update-faq-btn" data-doc-id="${doc.id}">Update FAQ</button>
+        `;
+        adminContent.appendChild(faqCard);
+    });
+
+    document.querySelectorAll('.update-faq-btn').forEach(button => {
+        button.addEventListener('click', async () => {
+            const docId = button.getAttribute('data-doc-id');
+            const question = button.previousElementSibling.previousElementSibling.value;
+            const answer = button.previousElementSibling.value;
+            const docRef = doc(db, 'faqs', docId);
+            await updateDoc(docRef, {
+                question: question,
+                answer: answer
+            });
+            alert('FAQ updated successfully.');
+        });
+    });
+}
+
+// Function to edit About Us
+function editAboutUs() {
+    window.location.href = '/about-us?edit=true';
+}
+
 // Ensure these functions are globally accessible
 window.viewProofs = viewProofs;
 window.toggleBan = toggleBan;
 window.updateRequestStatus = updateRequestStatus;
 window.toggleAdmin = toggleAdmin;
+window.editAnnouncements = editAnnouncements;
+window.editFAQs = editFAQs;
+window.editAboutUs = editAboutUs;
