@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const IDElement = document.getElementById('idNumber')
     const fullNameElement = document.getElementById('fullName')
     const emailElement = document.getElementById('email')
+    const pointElement = document.getElementById('points')
 
     if (user) {
       // User is logged in
@@ -21,15 +22,18 @@ document.addEventListener('DOMContentLoaded', () => {
           const userData = userDoc.data()
           // change the header to the current logged in user
           userNameSpan.textContent = `${userData.fullName}`
+          console.log(userData.points)
 
           IDElement.textContent = `ID Number: ${userData.id || 'N/A'}`
           fullNameElement.textContent = `Full Name: ${userData.fullName || 'N/A'}`
           emailElement.textContent = `Email: ${userData.email || 'N/A'}`
+          pointElement.textContent = `Points: ${userData.points || 'N/A'}`
         } else {
           userNameSpan.textContent = ''
           IDElement.textContent = 'ID Number: N/A'
           fullNameElement.textContent = 'Full Name: N/A'
           emailElement.textContent = 'Email: N/A'
+          pointElement.textContent = `Points: ${userData.points || 'N/A'}`
         }
       } catch (error) {
         console.error('Error fetching user data:', error)
@@ -37,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         IDElement.textContent = 'ID Number: N/A'
         fullNameElement.textContent = 'Full Name: N/A'
         emailElement.textContent = 'Email: N/A'
+        pointElement.textContent = 'Points: N/A'
       }
       // change login button to logout
       authButton.textContent = 'Logout'
@@ -59,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       IDElement.textContent = 'ID Number: N/A'
       fullNameElement.textContent = 'Full Name: N/A'
       emailElement.textContent = 'Email: N/A'
+      pointElement.textContent = 'Points: N/A'
     }
   })
 })
