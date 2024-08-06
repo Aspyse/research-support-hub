@@ -1,4 +1,5 @@
-import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc, signOut } from '../server/firebase.js'
+import { collection, signInWithEmailAndPassword, onAuthStateChanged, auth, db, getDocs, query, where, updateDoc, doc, signOut, 
+        messaging, getToken } from '../server/firebase.js'
 
 document.addEventListener('DOMContentLoaded', function () {
   const loginButton = document.getElementById('loginButton')
@@ -79,6 +80,8 @@ export async function login(event) {
       return
     }
 
+    await checkNotificationPermission();
+    await requestNotificationPermission(userDoc.id);
     await updateDoc(userRef, { last_login: Date.now() })
 
     console.log('User logged in successfully')
@@ -137,4 +140,43 @@ function handleAuthError(error) {
   }
 
   alert(errorMessage)
+}
+
+// Function for checking notification permission
+async function checkNotificationPermission() {
+  const permission = Notification.permission;
+
+  if (permission === 'denied') {
+    console.log('Notifications permission has been blocked.');
+    alert('It looks like you have blocked notifications for this site. Please enable notifications in your browser settings to receive updates.');
+  }
+}
+
+// Function for requesting notification permission
+async function requestNotificationPermission(userId) {
+  console.log('Requesting notification permission...');
+  
+  try {
+    const permission = await Notification.requestPermission();
+    
+    if (permission === 'granted') {
+      console.log('Notification permission granted.');
+      
+      const currentToken = await getToken(messaging, { vapidKey: 'BLF-bVKyCJHXWCdneyoh1awkB_52hifAkXE9fEoxb9LwLefEVT2ORS8-MQqaHhHbA29qnmHoBtu5wr35qiSTBFY' });
+      
+      if (currentToken) {
+        console.log('FCM Token:', currentToken);
+        
+        const userRef = doc(db, 'users', userId);
+        await updateDoc(userRef, { fcmToken: currentToken });
+      } else {
+        console.log('No registration token available.');
+      }
+    } else if (permission === 'denied') {
+      console.log('Notification permission denied.');
+      alert('Notifications permission denied. You may enable notifications in your browser settings.');
+    }
+  } catch (error) {
+    console.error('Error retrieving token:', error);
+  }
 }

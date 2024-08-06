@@ -17,6 +17,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 const __dirname = import.meta.dirname
 
 const app = express()
+app.use(express.json());
 
 // Express-handlebars setup
 app.engine('hbs', handlebars.engine({
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(router)
 
 app.use('/server', express.static(path.join(__dirname, 'server')))
+
+
 
 // Listen on localhost
 app.listen(PORT, () => {

@@ -178,13 +178,81 @@ async function viewAllResearchRequests() {
 }
 
 async function updateRequestStatus(requestId, isApproved) {
-    const requestDocRef = doc(db, 'research_requests', requestId);
-    await updateDoc(requestDocRef, {
-        isApproved: isApproved
-    });
-    alert(`Request ${isApproved} successfully.`);
-    viewAllResearchRequests(); // Refresh the request list
+    try {
+        // Get the request document
+        const requestDocRef = doc(db, 'research_requests', requestId);
+        const requestDoc = await getDoc(requestDocRef);
+        console.log(requestId);
+
+        if (!requestDoc.exists()) {
+            throw new Error('Request document does not exist');
+        }
+
+        const requestData = requestDoc.data();
+        const userID = requestData.userId;
+        console.log(userID);
+
+        // Check if userID is valid
+        if (!userID) {
+            throw new Error('userID is missing from the request document');
+        }
+
+        // Query the users collection to find the document where UID matches userID
+        const usersCollectionRef = collection(db, 'users');
+        const userQuery = query(usersCollectionRef, where('uid', '==', userID));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (querySnapshot.empty) {
+            throw new Error('User document does not exist');
+        }
+
+        // Assuming there is only one document that matches the query
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+        const registrationToken = userData.fcmToken;
+
+        // Check if registrationToken is valid
+        if (!registrationToken) {
+            throw new Error('registrationToken is missing from the user document');
+        }
+
+        // Update the request status
+        await updateDoc(requestDocRef, {
+            isApproved: isApproved
+        });
+
+        // Send notification
+        try {
+            const response = await fetch('/sendNotification', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    registrationToken: registrationToken,
+                    title: isApproved ? 'Request Approved' : 'Request Rejected',
+                    body: `Your request has been ${isApproved ? 'approved' : 'rejected'}.`,
+                    data: { requestId: requestId }
+                })
+            });
+
+            if (response.ok) {
+                console.log('Notification sent successfully.');
+            } else {
+                console.error('Error sending notification:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending notification:', error);
+        }
+
+        alert(`Request ${isApproved ? 'approved' : 'rejected'} successfully.`);
+        viewAllResearchRequests(); // Refresh the request list
+    } catch (error) {
+        console.error('Error fetching user document:', error);
+    }
 }
+
+
 
 // Function to edit Announcements
 async function editAnnouncements() {
