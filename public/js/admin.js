@@ -179,13 +179,81 @@ async function viewAllResearchRequests() {
 }
 
 async function updateRequestStatus(requestId, isApproved) {
-    const requestDocRef = doc(db, 'research_requests', requestId);
-    await updateDoc(requestDocRef, {
-        isApproved: isApproved
-    });
-    alert(`Request ${isApproved} successfully.`);
-    viewAllResearchRequests(); // Refresh the request list
+    try {
+        // Get the request document
+        const requestDocRef = doc(db, 'research_requests', requestId);
+        const requestDoc = await getDoc(requestDocRef);
+        console.log(requestId);
+
+        if (!requestDoc.exists()) {
+            throw new Error('Request document does not exist');
+        }
+
+        const requestData = requestDoc.data();
+        const userID = requestData.userId;
+        const requestTitle = requestData.title; // Get the request title
+        console.log(userID);
+
+        // Check if userID is valid
+        if (!userID) {
+            throw new Error('userID is missing from the request document');
+        }
+
+        // Query the users collection to find the document where UID matches userID
+        const usersCollectionRef = collection(db, 'users');
+        const userQuery = query(usersCollectionRef, where('uid', '==', userID));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (querySnapshot.empty) {
+            throw new Error('User document does not exist');
+        }
+
+        // Assuming there is only one document that matches the query
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+        const userEmail = userData.email; // Get the user email
+
+        // Check if userEmail is valid
+        if (!userEmail) {
+            throw new Error('User email is missing from the user document');
+        }
+
+        // Update the request status
+        await updateDoc(requestDocRef, {
+            isApproved: isApproved
+        });
+
+        // Send email
+        try {
+            const emailResponse = await fetch('/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    to: userEmail,
+                    subject: `Your request titled "${requestTitle}" has been ${isApproved}`,
+                    text: `Your request titled "${requestTitle}" has been ${isApproved}.`,
+                    html: `<p>Your request titled "<strong>${requestTitle}</strong>" has been ${isApproved}.</p>`
+                })
+            });
+
+            if (emailResponse.ok) {
+                console.log('Email sent successfully.');
+            } else {
+                console.error('Error sending email:', emailResponse.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+
+        alert(`Request titled "${requestTitle}" ${isApproved} successfully.`);
+        viewAllResearchRequests(); // Refresh the request list
+    } catch (error) {
+        console.error('Error fetching user document:', error);
+    }
 }
+
 
 // Function to edit Announcements
 async function editAnnouncements() {
