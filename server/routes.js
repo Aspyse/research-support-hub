@@ -17,7 +17,7 @@ router.get('/profile', async (req, res) => {
   res.render('profile', {
     layout: 'index',
     title: 'Profile Page',
-    styles: ['main.css', 'header.css', 'header2.css'],
+    styles: ['profile.css', 'main.css', 'header.css', 'header2.css'],
     scripts: ['profile.js','main.js']
   });
 });
