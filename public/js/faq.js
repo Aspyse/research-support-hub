@@ -59,11 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
             querySnapshot.forEach((doc) => {
                 const faq = doc.data();
                 const faqItem = document.createElement('div');
-                faqItem.classList.add('faq-item');
+                faqItem.classList.add('faq-container');
                 faqItem.innerHTML = `
-                    <h3>${faq.question}</h3>
-                    <p>${faq.answer}</p>
-                    <button class="edit-faq-btn" data-doc-id="${doc.id}" style="display: none;">Edit</button>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>${faq.question}</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>${faq.answer}</p>
+                        </div>
+                        <button class="edit-faq-btn" data-doc-id="${doc.id}">Edit</button>
+                    </div>
                 `;
                 faqContent.appendChild(faqItem);
             });
