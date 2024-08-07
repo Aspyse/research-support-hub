@@ -1,4 +1,4 @@
-import { db, storage, doc, getDoc, addDoc, collection, ref, uploadBytes, getDownloadURL, query, where, getDocs } from '../server/firebase.js'
+import { auth, db, storage, doc, getDoc, addDoc, collection, ref, uploadBytes, getDownloadURL, query, where, getDocs } from '../server/firebase.js'
 
 // Get research ID and user ID from the URL
 const pathname = window.location.pathname
@@ -66,13 +66,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
         alert('Proof of participation submitted successfully!')
+
+        // Get current user's email
+        const user = auth.currentUser
+        const userEmail = user.email
+
+        console.log(userEmail)
+
         // Fetch admins' emails
         const usersRef = collection(db, 'users')
         const adminQuery = query(usersRef, where('isAdmin', '==', true))
         const adminSnapshot = await getDocs(adminQuery)
 
         const adminEmails = adminSnapshot.docs.map(doc => doc.data().email).filter(email => email)
-        
+
         // Send email to admins
         try {
           const emailResponse = await fetch('/sendEmail', {
@@ -83,8 +90,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             body: JSON.stringify({
               to: adminEmails,
               subject: `New Proof of Participation Submitted for Research "${researchId}"`,
-              text: `Dear Admins,\n\nA new proof of participation has been submitted for the research with ID "${researchId}".\n\nBest regards,\nThe Research Support Team`,
-              html: `<p>Dear Admins,</p><p>A new proof of participation has been submitted for the research with ID "<strong>${researchId}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+              text: `Dear Admins,\n\nA new proof of participation has been submitted for the research with ID "${researchId}".\nSubmitted by: ${userEmail}\n\nBest regards,\nThe Research Support Hub`,
+              html: `<p>Dear Admins,</p><p>A new proof of participation has been submitted for the research with ID "<strong>${researchId}</strong>".</p><p><strong>Submitted by:</strong> ${userEmail}</p><p>Best regards,<br>The Research Support Team</p>`
             })
           })
 

@@ -168,7 +168,7 @@ async function addPointsToUser(userDocId, points, researchId) {
                     to: userEmail,
                     subject: `Points Added for Your Participation in "${requestTitle}"`,
                     text: `Dear User,\n\nYou have been awarded ${points} points for your participation in the research titled "${requestTitle}".\n\nBest regards,\nThe Research Support Team`,
-                    html: `<p>Dear User,</p><p>You have been awarded <strong>${points}</strong> points for your participation in the research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+                    html: `<p>Dear User,</p><p>You have been awarded <strong>${points}</strong> points for your participation in the research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Hub</p>`
                 })
             });
 
@@ -192,7 +192,7 @@ async function addPointsToUser(userDocId, points, researchId) {
                     to: requestorEmail,
                     subject: `Points Awarded for Your Research Request "${requestTitle}"`,
                     text: `Dear Researcher,\n\nThe user has been awarded ${points} points for their participation in your research titled "${requestTitle}".\n\nBest regards,\nThe Research Support Team`,
-                    html: `<p>Dear Researcher,</p><p>The user has been awarded <strong>${points}</strong> points for their participation in your research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+                    html: `<p>Dear Researcher,</p><p>The user has been awarded <strong>${points}</strong> points for their participation in your research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Hub</p>`
                 })
             });
 
