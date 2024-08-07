@@ -2,10 +2,10 @@
   "name": "research-support-hub",
   "version": "1.0.0",
   "description": "CSSWENG Research Support Hub Web App",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node app",
+    "dev": "node index",
     "standard": "npx standard --fix"
   },
   "repository": {
