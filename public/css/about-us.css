@@ -1,33 +1,54 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
-.about-us-container {
-    display: grid;
-    gap: 40px;
-    padding: 20px;
-    justify-items: center;
-}
-.about-us-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    background-color: #fff;
-    color: #45454B;
-    max-width: 300px;
+#about-us-container {
     text-align: center;
-}
-.about-us-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-.about-us-card h3 {
-    margin: 10px 0;
-}
-.about-us-card p {
-    margin: 0;
-    font-size: 16px;
-}
+  }
+  
+  .centered-title {
+    font-size: var(--heading);
+    margin-bottom: 20px;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px; 
+    row-gap: 20px;
+    justify-items: center;
+  }
+  
+  .team-member {
+    text-align: center;
+  }
+  
+  .image-placeholder {
+    width: 300px;
+    height: 400px;
+    background-color: #555;
+    border-radius: 20px;
+    background-color: #555;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+  }
+  
+  .team-member .name {
+    margin-top: 10px;
+    font-size: var(--body);
+    font-weight: bold;
+  }
+  
+  .team-member .description {
+    font-size: var(--small);
+    color: #ccc;
+  }
+  
+  
+  @media (max-width: 1300px) {
+    .team-grid {
+      grid-template-columns: 2fr;
+      column-gap: 10px; 
+      row-gap: 20px;
+    }
+  }
+
+  
