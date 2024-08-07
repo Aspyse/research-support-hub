@@ -380,10 +380,12 @@ async function editAnnouncements() {
     const addAnnouncementForm = document.createElement('div');
     addAnnouncementForm.classList.add('announcement-card');
     addAnnouncementForm.innerHTML = `
-        <h3>Add New Announcement</h3>
-        <input type="text" id="new-announcement-title" placeholder="Title">
-        <textarea id="new-announcement-content" placeholder="Content"></textarea>
-        <button id="add-announcement-btn">Add Announcement</button>
+        <div class="form-management">
+            <h3>Add New Announcement</h3>
+            <input type="text" id="new-announcement-title" placeholder="Title">
+            <textarea id="new-announcement-content" placeholder="Content"></textarea>
+            <button id="add-announcement-btn">Add Announcement</button>
+        </div>
     `;
     adminContent.appendChild(addAnnouncementForm);
 
@@ -412,11 +414,13 @@ async function editAnnouncements() {
         const announcementCard = document.createElement('div');
         announcementCard.classList.add('announcement-card');
         announcementCard.innerHTML = `
-            <h3>Edit Announcement</h3>
-            <input type="text" class="announcement-title" value="${announcement.title}" placeholder="Title">
-            <textarea class="announcement-content" placeholder="Content">${announcement.content}</textarea>
-            <button class="update-announcement-btn" data-doc-id="${doc.id}">Update Announcement</button>
-            <button class="delete-announcement-btn" data-doc-id="${doc.id}">Delete Announcement</button>
+            <div class="form-management">
+                <h3>Edit Announcement</h3>
+                <input type="text" class="announcement-title" value="${announcement.title}" placeholder="Title">
+                <textarea class="announcement-content" placeholder="Content">${announcement.content}</textarea>
+                <button class="update-announcement-btn" data-doc-id="${doc.id}">Update Announcement</button>
+                <button class="delete-announcement-btn" data-doc-id="${doc.id}">Delete Announcement</button>
+            </div>
         `;
         adminContent.appendChild(announcementCard);
     });
@@ -456,10 +460,12 @@ async function editFAQs() {
     const addFAQForm = document.createElement('div');
     addFAQForm.classList.add('faq-card');
     addFAQForm.innerHTML = `
-        <h3>Add New FAQ</h3>
-        <input type="text" id="new-faq-question" placeholder="Question">
-        <textarea id="new-faq-answer" placeholder="Answer"></textarea>
-        <button id="add-faq-btn">Add FAQ</button>
+        <div class="form-management">
+            <h3>Add New FAQ</h3>
+            <input type="text" id="new-faq-question" placeholder="Question">
+            <textarea id="new-faq-answer" placeholder="Answer"></textarea>
+            <button id="add-faq-btn">Add FAQ</button>
+        </div>
     `;
     adminContent.appendChild(addFAQForm);
 
@@ -488,11 +494,13 @@ async function editFAQs() {
         const faqCard = document.createElement('div');
         faqCard.classList.add('faq-card');
         faqCard.innerHTML = `
-            <h3>Edit FAQ</h3>
-            <input type="text" class="faq-question" value="${faq.question}" placeholder="Question">
-            <textarea class="faq-answer" placeholder="Answer">${faq.answer}</textarea>
-            <button class="update-faq-btn" data-doc-id="${doc.id}">Update FAQ</button>
-            <button class="delete-faq-btn" data-doc-id="${doc.id}">Delete FAQ</button>
+            <div class="form-management">
+                <h3>Edit FAQ</h3>
+                <input type="text" class="faq-question" value="${faq.question}" placeholder="Question">
+                <textarea class="faq-answer" placeholder="Answer">${faq.answer}</textarea>
+                <button class="update-faq-btn" data-doc-id="${doc.id}">Update FAQ</button>
+                <button class="delete-faq-btn" data-doc-id="${doc.id}">Delete FAQ</button>
+            </div>
         `;
         adminContent.appendChild(faqCard);
     });
@@ -531,11 +539,7 @@ async function editAboutUs() {
     const addAboutUsForm = document.createElement('div');
     addAboutUsForm.classList.add('about-us-card');
     addAboutUsForm.innerHTML = `
-        <h3>Add New About Us Section</h3>
-        <input type="text" id="new-about-us-title" placeholder="Title">
-        <textarea id="new-about-us-content" placeholder="Content"></textarea>
-        <input type="file" id="about-us-image" accept="image/*">
-        <button id="add-about-us-btn">Add About Us Section</button>
+        
     `;
     adminContent.appendChild(addAboutUsForm);
 
