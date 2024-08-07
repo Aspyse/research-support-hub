@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const userDoc = querySnapshot.docs[0].data();
                     userNameSpan.textContent = `${userDoc.fullName}`;
 
-                    if (userDoc.isAdmin === 1) {
+                    if (userDoc.isAdmin === true) {
                         console.log('User is an admin');
                         // Show admin link if user is an admin
                         const adminLink = document.querySelector('.admin-link');
