@@ -1,4 +1,5 @@
 import express from 'express';
+import { sendEmail } from './Emailer.js';
 
 const router = express.Router();
 
@@ -107,6 +108,18 @@ router.get('/about-us', async (req, res) => {
   });
 });
 
+
+router.post('/sendEmail', async (req, res) => {
+  const { to, subject, text, html } = req.body;
+
+  try {
+      await sendEmail(to, subject, text, html);
+      res.status(200).send('Email sent successfully!!!');
+  } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Error sending email');
+  }
+});
 
 
 export { router };
