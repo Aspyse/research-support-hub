@@ -1,32 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/login.css">
-</head>
-<body>
-<h1></h1>
-<div class="container">
-    <div class="content">
-        <h1>Login</h1>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Password">
-        <button id="loginButton">Login</button>
-        <p>Don't have an account? <a href="/register">Register here</a></p>
-    </div>
-</div>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use -->
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
-
-<!-- Our script must be loaded after firebase references -->
-<script type="module" src="/js/login.js"></script>
-</body>
-</html>
+    <main class="wrapper">
+        <div class="container">
+            <div class="content">
+                <h1>Login</h1>
+                <label for="identifier">ID/Email:</label>
+                <input type="text" id="identifier" name="identifier" placeholder="ID or Email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="loginButton">Login</button>
+                <p>Don't have an account? <a href="/register">Register here</a></p>
+            </div>
+        </div>
+    </main>

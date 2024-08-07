@@ -1,28 +1,37 @@
-import { auth, db, collection, query, where, getDocs } from '../server/firebase.js';
+import { auth, db, collection, query, where, getDocs, signOut } from '../server/firebase.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     console.log('DOMContentLoaded event triggered');
 
     auth.onAuthStateChanged(async (user) => {
+        const userNameSpan = document.getElementById('userName');
+        const authButton = document.getElementById('authButton');
+
         if (user) {
             console.log('User is logged in:', user.uid);
 
             try {
                 const usersRef = collection(db, 'users');
-                const q = query(usersRef, where('uid', '==', user.uid));
+                const q = query(usersRef, where('email', '==', user.email));
                 const querySnapshot = await getDocs(q);
 
                 if (!querySnapshot.empty) {
                     console.log('User document found');
-                    querySnapshot.forEach((doc) => {
-                        console.log('User document data:', doc.data());
-                        if (doc.data().isAdmin === 1) {
-                            console.log('User is an admin');
-                        } else {
-                            console.log('User is not an admin');
-                            hideAdminLink();
+                    const userDoc = querySnapshot.docs[0].data();
+                    userNameSpan.textContent = `${userDoc.fullName}`;
+
+                    if (userDoc.isAdmin === true) {
+                        console.log('User is an admin');
+                        // Show admin link if user is an admin
+                        const adminLink = document.querySelector('.admin-link');
+                        if (adminLink) {
+                            adminLink.style.display = 'block';
+                            console.log('Admin link displayed');
                         }
-                    });
+                    } else {
+                        console.log('User is not an admin');
+                        hideAdminLink();
+                    }
                 } else {
                     console.log('No user document found for user:', user.uid);
                     hideAdminLink();
@@ -31,19 +40,33 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.error('Error fetching user document:', error);
                 hideAdminLink();
             }
+
+            // Update auth button for logged-in user
+            authButton.textContent = 'Logout';
+            authButton.href = '#';
+            authButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                try {
+                    await signOut(auth);
+                    window.location.href = '/login';
+                } catch (error) {
+                    console.error('Sign out error:', error);
+                }
+            });
         } else {
             console.log('No user is logged in');
+            userNameSpan.textContent = 'Hello, User';
+            authButton.textContent = 'Login';
+            authButton.href = '/login';
             hideAdminLink();
         }
     });
 
     function hideAdminLink() {
-        const adminLink = document.querySelector('a[href="/admin"]');
+        const adminLink = document.querySelector('.admin-link');
         if (adminLink) {
             adminLink.style.display = 'none';
             console.log('Admin link hidden');
-        } else {
-            console.log('Admin link not found');
         }
     }
 });

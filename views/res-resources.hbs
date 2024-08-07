@@ -1,0 +1,44 @@
+<body>
+    <header2 class="header2">
+        <h1>Research Participation</h1>
+    </header2>
+
+    <main class="wrapper">
+        <div class="container">
+            <div class="research-summary">
+                <h2>{{totalProjects}} Active Projects</h2>
+            </div>
+        </div>
+        <div class="container">
+            <div class="search-container">
+                <div class="search-dropdown">
+                    <button class="dropbtn">Search By:</button>
+                    <div class="dropdown-content">
+                        <a href="#">Title</a>
+                        <a href="#">Description</a>
+                    </div>
+                </div>
+                <input type="text" class="search-input" placeholder="Enter keywords you are looking for">
+                <button class="search-button"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="research-list">
+                {{#each researchRequests}}
+                <div class="research-card" data-user-id="{{userId}}">
+                    <span class="type-part">{{typePart}}</span>
+                    <h3>{{title}}</h3>
+                    <p>{{desc}}</p>
+                    <div class="button-container">
+                        {{#ifEquals userId currentUser.uid}}
+                            <a href="/edit-research/{{@key}}" class="button">Edit</a>
+                        {{else}}
+                            <a href="/res-details/{{@key}}?userId={{currentUser.uid}}" class="button">Participate</a>
+                        {{/ifEquals}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </main>
+</body>

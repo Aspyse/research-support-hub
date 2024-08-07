@@ -1,0 +1,91 @@
+.admin-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #555555;
+    width: 100%;
+}
+
+.admin-menu button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-menu button:hover {
+    background-color: #43b570;
+}
+
+.admin-menu button.active {
+    background-color: #52c07e;
+}
+
+.admin-content {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.user-card, .request-card {
+    background-color: #555555;
+    color: white;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-card h3, .request-card h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.user-card p, .request-card p {
+    margin: 5px 0;
+}
+
+.user-card button, .request-card button {
+    background-color: #43b570; 
+    color: #fff; 
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.user-card button:hover, .request-card button:hover {
+    background-color: #03713e; 
+}
+
+.request-card .status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff; 
+}
+
+.status.pending {
+    background-color: gray;
+}
+
+.status.approved {
+    background-color: green;
+}
+
+.status.rejected {
+    background-color: red;
+} 

@@ -1,0 +1,61 @@
+.research-details {
+    background-color: #555555;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .research-details h2 {
+    font-size: 2rem;
+    padding: 0;
+    margin-top: 10px; 
+  }
+  
+  .research-details p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .proof-of-participation {
+    background-color: #555555;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .proof-of-participation h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 10px; 
+  }
+  
+  .proof-of-participation form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  
+  .proof-of-participation input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .proof-of-participation button {
+    background-color: #43B570;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .proof-of-participation button:hover {
+    background-color: #379e5d;
+  }
+  

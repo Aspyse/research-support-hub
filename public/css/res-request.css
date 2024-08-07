@@ -1,0 +1,102 @@
+#resReqForm {
+    display: flex;
+    flex-direction: column; 
+    width: 100%; 
+    padding: 20px; 
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#resReqForm label {
+    font-weight: bold;
+    color: #45454B;
+    margin-bottom: 5px;
+}
+
+#resReqForm input[type="text"],
+#resReqForm input[type="email"],
+#resReqForm input[type="date"],
+#resReqForm input[type="url"],
+#resReqForm textarea,
+#resReqForm select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    color: #45454B;
+}
+
+#resReqForm textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+#resReqForm textarea#desc {
+    height: 120px;
+    resize: none;
+}
+
+#resReqForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#resReqForm button:hover {
+    background-color: #03713e;
+}
+
+
+.form-columns {
+    display: flex;
+    gap: 20px;
+}
+
+.form-columns .column {
+    flex: 1;
+}
+
+.button-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    #resReqForm .form-columns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #resReqForm .form-columns .column {
+        width: 100%;
+    }
+}
+
+#resReqForm .button-container {
+    display: flex;
+    margin-top: 10px;
+}
+
+#resReqForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#resReqForm button:hover {
+    background-color: #03713e;
+}
