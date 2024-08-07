@@ -89,3 +89,49 @@
 .status.rejected {
     background-color: red;
 } 
+
+/* Styles for form management */
+.form-management {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #555555;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.form-management h3 {
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.form-management input[type="text"],
+.form-management textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-management textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-management button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #43b570;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-management button:hover {
+    background-color: #03713e;
+}
