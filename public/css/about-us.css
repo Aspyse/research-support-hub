@@ -5,7 +5,6 @@ body {
 }
 .about-us-container {
     display: grid;
-
     gap: 40px;
     padding: 20px;
     justify-items: center;
@@ -16,6 +15,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 10px;
     background-color: #fff;
+    color: #45454B;
     max-width: 300px;
     text-align: center;
 }
