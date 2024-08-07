@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     auth.onAuthStateChanged(async (user) => {
         const userNameSpan = document.getElementById('userName');
         const authButton = document.getElementById('authButton');
-        const links = document.querySelectorAll('.nav-container a:not([href="/"])');
+        const links = document.querySelectorAll('.nav-container a:not([href="/"]):not([href="/login"])');
 
         if (user) {
             console.log('User is logged in:', user.uid);
