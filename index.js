@@ -32,6 +32,8 @@ app.use(router)
 
 app.use('/server', express.static(path.join(__dirname, 'server')))
 
+app.use('/images', express.static(path.join(__dirname, 'images')))
+
 // Listen on localhost
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT}`)
