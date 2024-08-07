@@ -1,35 +1,51 @@
-/* profile.css */
 .profile-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .profile-details {
-    display: flex;
-    align-items: center;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .avatar {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .user-info {
-    flex: 1;
-  }
-  
-  .user-info h3 {
-    margin: 0;
-  }
-  
-  .user-info p {
-    margin: 5px 0;
-  }
-  
+  max-width: 1000px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.profile-details-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(85, 85, 85);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+
+.user-info {
+  flex: 1;
+}
+
+.user-info h3, .user-info p {
+  margin: 5px 0;
+}
+
+
+.points-box {
+  background-color: #444444;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.points-box h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.points-box p {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
