@@ -35,6 +35,11 @@ export async function register (event) {
     return
   }
 
+  if (!/^\d+$/.test(id)) {
+    alert('DLSU ID must contain only numbers.');
+    return;
+  }
+
   if (!validateEmail(email)) {
     alert('Please use your DLSU email.')
     return
