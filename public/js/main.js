@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             console.log('No user is logged in');
-            userNameSpan.textContent = 'Hello, User';
+            userNameSpan.textContent = 'Hello, Student';
             authButton.textContent = 'Login';
             authButton.href = '/login';
             hideAdminLink();
