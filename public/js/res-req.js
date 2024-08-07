@@ -94,13 +94,51 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try {
       // Save the new research request to Firestore
-      await addDoc(collection(db, 'research_requests'), newResReq)
-      console.log('Research request submitted successfully!')
-      alert('Research request submitted successfully!')
-      document.getElementById('resReqForm').reset()
+      await addDoc(collection(db, 'research_requests'), newResReq);
+      console.log('Research request submitted successfully!');
+      alert('Research request submitted successfully!');
+      document.getElementById('resReqForm').reset();
+
+      // Fetch admins and send email notifications
+      const usersRef = collection(db, 'users');
+      const adminQuery = query(usersRef, where('isAdmin', '==', true));
+      const adminSnapshot = await getDocs(adminQuery);
+
+      const adminEmails = adminSnapshot.docs.map(doc => doc.data().email).filter(email => email)
+
+      if (adminEmails.length > 0) {
+        const subject = `New Research Request Submitted: "${title}"`
+        const text = `A new research request titled "${title}" has been submitted.\n\nDetails:\nTitle: ${title}\nDescription: ${desc}\nContact: ${contact}\nDate Range: ${startDate} to ${endDate}\n\nPlease review the request in the system.`
+        const html = `<p>A new research request titled "<strong>${title}</strong>" has been submitted.</p><p><strong>Details:</strong></p><p>Title: ${title}</p><p>Description: ${desc}</p><p>Contact: ${contact}</p><p>Date Range: ${startDate} to ${endDate}</p><p>Please review the request in the system.</p>`
+
+        try {
+          const emailResponse = await fetch('/sendEmail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              to: adminEmails,
+              subject,
+              text,
+              html
+            })
+          })
+
+          if (emailResponse.ok) {
+            console.log('Emails sent to admins successfully.')
+          } else {
+            console.error('Error sending emails to admins:', emailResponse.statusText)
+          }
+        } catch (error) {
+          console.error('Error sending emails to admins:', error)
+        }
+      } else {
+        console.log('No admin emails to send.')
+      }
     } catch (error) {
-      console.error('Failed to submit research request:', error)
-      alert('Failed to submit research request: ' + error.message)
+      console.error('Failed to submit research request or send admin notifications:', error)
+      alert('Failed to submit research request or send admin notifications: ' + error.message)
     }
   }
 

@@ -61,29 +61,41 @@ async function viewProofs(userId, userDocId) {
         console.log(`No proofs found for userId: ${userId}`);
         proofsContainer.innerHTML = `<p>No proofs of participation found for this user.</p>`;
     } else {
-        querySnapshot.forEach(doc => {
+        for (const doc of querySnapshot.docs) {
             const proof = doc.data();
             const proofItem = document.createElement('div');
             proofItem.classList.add('proof-item');
+            
+            // Get researchId for the proof
+            const researchId = proof.researchId;
+
+            // Create HTML for each proof item
             proofItem.innerHTML = `
                 <img src="${proof.proofURL}" alt="Proof of participation" style="width: 200px; height: 200px;">
-                <input type="number" class="points-input" data-user-id="${userId}" placeholder="Enter points">
-                <button class="submit-points-btn" data-user-id="${userId}" data-proof-id="${doc.id}" data-doc-id="${userDocId}">Submit Points</button>
+                <input type="number" class="points-input" data-proof-id="${doc.id}" placeholder="Enter points">
+                <button class="submit-points-btn" data-proof-id="${doc.id}" data-user-id="${userId}" data-doc-id="${userDocId}" data-research-id="${researchId}">Submit Points</button>
             `;
             proofsContainer.appendChild(proofItem);
-        });
+        }
     }
 
     adminContent.appendChild(proofsContainer);
 
     // Attach event listeners for newly added buttons
     document.querySelectorAll('.submit-points-btn').forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', async () => {
             const userDocId = button.getAttribute('data-doc-id');
+            const researchId = button.getAttribute('data-research-id');
             const pointsInput = button.previousElementSibling;
             const points = parseInt(pointsInput.value);
+
             if (!isNaN(points)) {
-                addPointsToUser(userDocId, points);
+                try {
+                    // Update the user's points and send an email with research details
+                    await addPointsToUser(userDocId, points, researchId);
+                } catch (error) {
+                    console.error('Error adding points or sending email:', error);
+                }
             } else {
                 alert("Please enter a valid number of points.");
             }
@@ -91,13 +103,117 @@ async function viewProofs(userId, userDocId) {
     });
 }
 
-async function addPointsToUser(userDocId, points) {
-    const userDocRef = doc(db, 'users', userDocId);
-    await updateDoc(userDocRef, {
-        points: increment(points)
-    });
-    alert(`Added ${points} points to the user.`);
+
+async function addPointsToUser(userDocId, points, researchId) {
+    try {
+        // Fetch the research request document to get the title and requestor's userId
+        const requestDocRef = doc(db, 'research_requests', researchId);
+        const requestDoc = await getDoc(requestDocRef);
+
+        if (!requestDoc.exists()) {
+            throw new Error('Request document does not exist');
+        }
+
+        const requestData = requestDoc.data();
+        const requestTitle = requestData.title; // Get the request title
+        const requestorUserId = requestData.userId; // Get the userId of the requestor
+
+        // Fetch the document for the requestor
+        const usersCollectionRef = collection(db, 'users');
+        const requestorQuery = query(usersCollectionRef, where('uid', '==', requestorUserId));
+        const requestorQuerySnapshot = await getDocs(requestorQuery);
+
+        if (requestorQuerySnapshot.empty) {
+            throw new Error('Requestor document does not exist');
+        }
+
+        const requestorDoc = requestorQuerySnapshot.docs[0];
+        const requestorData = requestorDoc.data();
+        const requestorEmail = requestorData.email; // Get the requestor's email
+
+        // Check if requestorEmail is valid
+        if (!requestorEmail) {
+            throw new Error('Requestor email is missing from the requestor document');
+        }
+
+        // Fetch the user's document who received the points
+        const userDocRef = doc(db, 'users', userDocId);
+        const userDoc = await getDoc(userDocRef);
+
+        if (!userDoc.exists()) {
+            throw new Error('User document does not exist');
+        }
+
+        const userData = userDoc.data();
+        const userEmail = userData.email; // Get the user email
+
+        // Check if userEmail is valid
+        if (!userEmail) {
+            throw new Error('User email is missing from the user document');
+        }
+
+        // Update the user's points
+        await updateDoc(userDocRef, {
+            points: increment(points)
+        });
+
+        // Send email to the user who received points
+        try {
+            const userEmailResponse = await fetch('/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    to: userEmail,
+                    subject: `Points Added for Your Participation in "${requestTitle}"`,
+                    text: `Dear User,\n\nYou have been awarded ${points} points for your participation in the research titled "${requestTitle}".\n\nBest regards,\nThe Research Support Team`,
+                    html: `<p>Dear User,</p><p>You have been awarded <strong>${points}</strong> points for your participation in the research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+                })
+            });
+
+            if (userEmailResponse.ok) {
+                console.log('User email sent successfully.');
+            } else {
+                console.error('Error sending user email:', userEmailResponse.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending user email:', error);
+        }
+
+        // Send email to the requestor
+        try {
+            const requestorEmailResponse = await fetch('/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    to: requestorEmail,
+                    subject: `Points Awarded for Your Research Request "${requestTitle}"`,
+                    text: `Dear Researcher,\n\nThe user has been awarded ${points} points for their participation in your research titled "${requestTitle}".\n\nBest regards,\nThe Research Support Team`,
+                    html: `<p>Dear Researcher,</p><p>The user has been awarded <strong>${points}</strong> points for their participation in your research titled "<strong>${requestTitle}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+                })
+            });
+
+            if (requestorEmailResponse.ok) {
+                console.log('Requestor email sent successfully.');
+            } else {
+                console.error('Error sending requestor email:', requestorEmailResponse.statusText);
+            }
+        } catch (error) {
+            console.error('Error sending requestor email:', error);
+        }
+
+        alert(`Added ${points} points to the user, notified them via email, and also informed the research requestor.`);
+    } catch (error) {
+        console.error('Error updating points or sending emails:', error);
+    }
+    viewAllUsers();
 }
+
+
+
 
 async function toggleBan(userDocId, isBanned) {
     const userDocRef = doc(db, 'users', userDocId);

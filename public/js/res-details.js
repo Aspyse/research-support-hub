@@ -1,4 +1,4 @@
-import { db, storage, doc, getDoc, addDoc, collection, ref, uploadBytes, getDownloadURL } from '../server/firebase.js'
+import { db, storage, doc, getDoc, addDoc, collection, ref, uploadBytes, getDownloadURL, query, where, getDocs } from '../server/firebase.js'
 
 // Get research ID and user ID from the URL
 const pathname = window.location.pathname
@@ -66,6 +66,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         })
 
         alert('Proof of participation submitted successfully!')
+        // Fetch admins' emails
+        const usersRef = collection(db, 'users')
+        const adminQuery = query(usersRef, where('isAdmin', '==', true))
+        const adminSnapshot = await getDocs(adminQuery)
+
+        const adminEmails = adminSnapshot.docs.map(doc => doc.data().email).filter(email => email)
+        
+        // Send email to admins
+        try {
+          const emailResponse = await fetch('/sendEmail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              to: adminEmails,
+              subject: `New Proof of Participation Submitted for Research "${researchId}"`,
+              text: `Dear Admins,\n\nA new proof of participation has been submitted for the research with ID "${researchId}".\n\nBest regards,\nThe Research Support Team`,
+              html: `<p>Dear Admins,</p><p>A new proof of participation has been submitted for the research with ID "<strong>${researchId}</strong>".</p><p>Best regards,<br>The Research Support Team</p>`
+            })
+          })
+
+          if (emailResponse.ok) {
+            console.log('Emails sent to admins successfully.')
+          } else {
+            console.error('Error sending email to admins:', emailResponse.statusText)
+          }
+        } catch (error) {
+          console.error('Error sending email to admins:', error)
+        }
+        window.location.href = '/res-resources'
         proofForm.reset()
       } catch (error) {
         console.error('Error uploading file:', error)
