@@ -21,10 +21,6 @@ import {
 // firebase-firestore
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-storage.js'
 
-// firebase-messaging
-import { getMessaging, getToken, onMessage } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging.js'
-
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -48,22 +44,10 @@ const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const db = getFirestore(app)
 const storage = getStorage(app)
-const messaging = getMessaging(app)
-
-
-onMessage(messaging, (payload) => {
-    console.log("Message received in foreground: ", payload);
-    const { title, body } = payload.notification;
-    new Notification(title, {
-        body: body,
-    });
-});
-
 
 export {
   auth, db, createUserWithEmailAndPassword, collection, addDoc,
   signInWithEmailAndPassword, onAuthStateChanged,
   query, where, getDocs, getDoc, updateDoc, doc, signOut, storage,
-  ref, uploadBytes, getDownloadURL, increment, deleteDoc, 
-  messaging, getToken, onMessage
+  ref, uploadBytes, getDownloadURL, increment, deleteDoc
 }

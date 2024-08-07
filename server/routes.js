@@ -1,5 +1,4 @@
 import express from 'express';
-import { sendNotification } from './firebaseAdmin.js';
 
 const router = express.Router();
 
@@ -108,16 +107,6 @@ router.get('/about-us', async (req, res) => {
   });
 });
 
-router.post('/sendNotification', async (req, res) => {
-  const { registrationToken, title, body, data } = req.body;
 
-  try {
-      await sendNotification(registrationToken, title, body, data);
-      res.status(200).send('Notification sent successfully!!!');
-  } catch (error) {
-      console.error('Error sending notification:', error);
-      res.status(500).send('Error sending notification');
-  }
-});
 
 export { router };
